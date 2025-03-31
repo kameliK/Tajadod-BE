@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام مكافآت التدوير</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="Rewards.css" rel="stylesheet">
+</head>
+<body>
+    <button onclick="window.location.href='Home.html'" class="home-button">
+        <i class="fas fa-home"></i>
+        الصفحة الرئيسية
+    </button>
+    
+    <div class="container">
+        <h1>نظام مكافآت إعادة التدوير</h1>
+        <div class="cards-grid">
+            <!-- Card 1 -->
+            <div class="card" data-card="1">
+                <div class="eco-badge">جديد!</div>
+                <i class="fas fa-recycle"></i>
+                <h2>كسب النقاط</h2>
+                <p>احصل على نقاط مقابل كل كيلوغرام تقوم بإعادة تدويره...</p>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="card" data-card="2">
+                <i class="fas fa-gift"></i>
+                <h2>استبدال المكافآت</h2>
+                <p>اختر من بين مجموعة واسعة من المكافآت...</p>
+            </div>
+            
+            <!-- Card 3 -->
+            <div class="card" data-card="3">
+                <i class="fas fa-users"></i>
+                <h2>مكافآت الإحالة</h2>
+                <p>احصل على نقاط إضافية عند دعوة الأصدقاء...</p>
+            </div>
+            
+            <!-- Card 4 -->
+            <div class="card" data-card="4">
+                <i class="fas fa-trophy"></i>
+                <h2>مستويات الولاء</h2>
+                <p>تقدم في مستويات برنامج الولاء الخاص بنا...</p>
+            </div>
+            
+            <!-- Card 5 -->
+            <div class="card" data-card="5">
+                <div class="eco-badge">شائع</div>
+                <i class="fas fa-leaf"></i>
+                <h2>شركاء بيئيون</h2>
+                <p>استمتع بخصومات حصرية من شركائنا...</p>
+            </div>
+            
+            <!-- Card 6 -->
+            <div class="card" data-card="6">
+                <i class="fas fa-chart-line"></i>
+                <h2>تتبع التقدم</h2>
+                <p>تابع تقدمك البيئي وتأثيرك...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div class="modal-overlay" id="modalOverlay"></div>
+    
+    <div class="modal-content" id="modalContent">
+        <div id="modalDescription"></div>
+        <button class="close-modal" onclick="closeModal()">إغلاق</button>
+    </div>
+
+    <!-- Statistics Modal -->
+    <div class="stats-modal-overlay" id="statsModalOverlay">
+        <div class="full-stats-modal">
+            <h3>التفاصيل الكاملة للإحصائيات البيئية</h3>
+            <div class="detailed-stats" id="detailedStats">
+                <!-- Content will be inserted by JavaScript -->
+            </div>
+            <button class="close-stats" onclick="closeStatsModal()">إغلاق</button>
+        </div>
+    </div>
+
+    <script>
+        // Card data
+        const cardData = {
+            1: {
+                title: "كيفية كسب النقاط",
+                content: `
+                    <ul>
+                        <li>1 كجم بلاستيك = 1 نقاط</li>
+                        <li>1 كجم كرتون = 4 نقاط</li>
+                        <li>1 كجم خشب = 2 نقاط</li>
+                        <li>1 كجم الالمنيوم = 3 نقاط</li>
+                    </ul>
+                    <div class="point-benefits">
+                        <h4>فوائد تجميع النقاط</h4>
+                        <ul class="benefits-list">
+                            <li><i class="fas fa-check-circle"></i> خصومات حصرية على المنتجات الصديقة للبيئة</li>
+                            <li><i class="fas fa-check-circle"></i> فرص المشاركة في مسابقات وجوائز قيّمة</li>
+                            <li><i class="fas fa-check-circle"></i> ترقية مستوى العضوية والاستفادة من مزايا إضافية</li>
+                            <li><i class="fas fa-check-circle"></i> المساهمة في تحسين البيئة والمجتمع</li>
+                        </ul>
+                    </div>
+                `
+            },
+            2: {
+                title: "خيارات استبدال النقاط",
+                content: `
+                    <ul>
+                        <li>100 نقطة: خصم 10% على منتجات صديقة للبيئة</li>
+                        <li>250 نقطة: اشتراك مجاني لمدة شهر في خدمة النقل الأخضر</li>
+                        <li>500 نقطة: هدية بيئية خاصة من شركائنا</li>
+                        <li>1000 نقطة: مشاركة في سحب على رحلة بيئية تعليمية</li>
+                    </ul>
+                `
+            },
+            3: {
+                title: "كيفية الحصول على مكافآت الإحالة",
+                content: `
+                    <ol>
+                        <li>شارك رابط الإحالة الخاص بك مع الأصدقاء</li>
+                        <li>احصل على 20 نقطة لكل صديق يسجل ويقوم بأول عملية تدوير</li>
+                        <li>احصل على 50 نقطة إضافية عند إحالة 5 أصدقاء</li>
+                        <li>لا يوجد حد أقصى لعدد النقاط التي يمكنك كسبها</li>
+                    </ol>
+                `
+            },
+            4: {
+                title: "مستويات البرنامج",
+                content: `
+                    <div class="levels">
+                        <div class="level">
+                            <h4>المبتدئ</h4>
+                            <p>0-500 نقطة: خصم 5% على بعض المنتجات</p>
+                        </div>
+                        <div class="level">
+                            <h4>النشط</h4>
+                            <p>501-1500 نقطة: خصم 10% + هدايا شهرية</p>
+                        </div>
+                        <div class="level">
+                            <h4>المتميز</h4>
+                            <p>1501-3000 نقطة: خصم 15% + دعوات حصرية</p>
+                        </div>
+                        <div class="level">
+                            <h4>السفير</h4>
+                            <p>3000+ نقطة: خصم 20% + مكافآت خاصة</p>
+                        </div>
+                    </div>
+                `
+            },
+            5: {
+                title: "شركاؤنا في الاستدامة",
+                content: `
+                    <div class="partners">
+                        <div class="partner">
+                            <h4>متجر البيئة الخضراء</h4>
+                            <p>خصم 15% على جميع المنتجات المعاد تدويرها</p>
+                        </div>
+                        <div class="partner">
+                            <h4>مقهى الاستدامة</h4>
+                            <p>كوب مجاني عند إحضار كوبك الخاص</p>
+                        </div>
+                        <div class="partner">
+                            <h4>نقل أخضر</h4>
+                            <p>20% خصم على جميع رحلات النقل الصديقة للبيئة</p>
+                        </div>
+                    </div>
+                `
+            },
+            6: {
+                title: "إحصائياتك البيئية",
+                content: `
+                    <div class="stats">
+                        <div class="stat">
+                            <h4>كمية المواد المعاد تدويرها</h4>
+                            <p>25 كجم</p>
+                        </div>
+                        <div class="stat">
+                            <h4>النقاط المكتسبة</h4>
+                            <p>320 نقطة</p>
+                        </div>
+                        <div class="stat">
+                            <h4>التأثير البيئي</h4>
+                            <p>وفرت 50 كجم من انبعاثات الكربون</p>
+                        </div>
+                        <div class="stat">
+                            <h4>مستواك الحالي</h4>
+                            <p>النشط (المرتبة الثانية)</p>
+                        </div>
+                    </div>
+                    <button class="view-more" onclick="showFullStats()">عرض التفاصيل الكاملة</button>
+                `
+            }
+        };
+
+        // Statistics data
+        const statsData = [
+            { label: "البلاستيك المعاد تدويره:", value: "10 كجم" },
+            { label: "الورق المعاد تدويره:", value: "8 كجم" },
+            { label: "الزجاج المعاد تدويره:", value: "5 كجم" },
+            { label: "المعادن المعاد تدويرها:", value: "2 كجم" },
+            { label: "الأشجار التي تم إنقاذها:", value: "شجرتين" },
+            { label: "المياه التي تم توفيرها:", value: "1500 لتر" },
+            { label: "الطاقة التي تم توفيرها:", value: "200 كيلوواط/ساعة" }
+        ];
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click event to all cards
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const cardNumber = this.getAttribute('data-card');
+                    showModal(cardNumber);
+                });
+            });
+
+            // Close modal when clicking overlay
+            document.getElementById('modalOverlay').addEventListener('click', closeModal);
+        });
+
+        // Show modal with card content
+        function showModal(cardNumber) {
+            const modalOverlay = document.getElementById('modalOverlay');
+            const modalContent = document.getElementById('modalDescription');
+            
+            if (cardData[cardNumber]) {
+                modalContent.innerHTML = `
+                    <h3>${cardData[cardNumber].title}</h3>
+                    ${cardData[cardNumber].content}
+                `;
+                
+                modalOverlay.style.display = 'block';
+                document.getElementById('modalContent').style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('modalOverlay').style.display = 'none';
+            document.getElementById('modalContent').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Show full statistics
+        function showFullStats() {
+            closeModal(); // Close the card modal first
+            
+            const statsContainer = document.getElementById('detailedStats');
+            statsContainer.innerHTML = '';
+            
+            statsData.forEach(stat => {
+                statsContainer.innerHTML += `
+                    <div class="stat-item">
+                        <span class="stat-label">${stat.label}</span>
+                        <span class="stat-value">${stat.value}</span>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('statsModalOverlay').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close statistics modal
+        function closeStatsModal() {
+            document.getElementById('statsModalOverlay').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"></html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر منصة تجدد</title>
+    <link rel="stylesheet" href="Store.css">
+
+</head>
+
+<body>
+    <div class="header" dir="ltr">
+        <div class="header-content">
+            <a href="./Home.html" class="back-button">العودة إلى الصفحة الرئيسية</a>
+            <h1>متجر إعادة التدوير</h1>
+        </div>
+    </div>
+
+            <div class="store">
+                <!-- 30+ Items - Each row has 4 items -->
+                <div class="item" onclick="openModal('كرسي بلاستيكي', 'كرسي مصنوع من البلاستيك المعاد تدويره', 5, 50, './imgs/free-photo-of-gray-plastic-garden-chair-next-to-shrub-of-french-marigold-flowers.jpeg')">
+                    <img src="./imgs/free-photo-of-gray-plastic-garden-chair-next-to-shrub-of-french-marigold-flowers.jpeg" alt="كرسي بلاستيكي">
+                    <h3>كرسي بلاستيكي</h3>
+                    <p>5 دينار /50 نقطة</p>
+                </div>
+                <div class="item" onclick="openModal('صندوق خشبي', 'صندوق مصنوع من الخشب المعاد تدويره', 5, 50, './imgs/pexels-31299941-8587327.jpg')">
+                    <img src="./imgs/pexels-31299941-8587327.jpg" alt="صندوق خشبي">
+                    <h3>صندوق خشبي</h3>
+                    <p>5 دينار /50 نقطة</p>
+        
+                </div> <div class="item" onclick="openModal('كرسي خشبي', 'كرسي مصنوع من الخشب المعاد تدويره', 30, 300, './imgs/woodchair.jpeg')">
+                    <img src="./imgs/woodchair.jpeg" alt="كرسي خشبي">
+                    <h3>كرسي خشبي</h3>
+                    <p>30 دينار /300 نقطة</p>
+                </div> <div class="item" onclick="openModal('مجلس معدني', 'مجلس مصنوع من المعدن المعاد تدويره', 100, 1000, './imgs/recycledChair.jpg')">
+                    <img src="./imgs/recycledChair.jpg" alt="كرسي معدني">
+                    <h3>مجلس معدني</h3>
+                    <p>100 دينار / 1000 نقطة</p>
+                </div> <div class="item" onclick="openModal('كيس ملاكمه', 'كيس ملاكمه مصنوع من البلاستيك المعاد تدويره', 30, 300, './imgs/pexels-ivan-samkov-4162449.jpg')">
+                    <img src="./imgs/pexels-ivan-samkov-4162449.jpg" alt="كيس ملاكمه">
+                    <h3>كيس ملاكمه</h3>
+                    <p>30 دينار / 300 نقطة</p>
+                </div> <div class="item" onclick="openModal('فرشاه ذات مقبض خشبي', 'مقبض مصنوع من الخشب المعاد تدويره', 1, 10, './imgs/pexels-karolina-grabowska-4202889.jpg')">
+                    <img src="./imgs/pexels-karolina-grabowska-4202889.jpg" alt="فرشاه ذات مقبض خشبي">
+                    <h3>فرشاه ذات مقبض خشبي</h3>
+                    <p>1 دينار / 10 نقطة</p>
+                </div> <div class="item" onclick="openModal('دراجة هوائية', 'دراجة هوائية مصنوعة من المعدن المعاد تدويره', 70, 700, './imgs/pexels-pixabay-276517.jpg')">
+                    <img src="./imgs/pexels-pixabay-276517.jpg" alt="دراجة هوائية">
+                    <h3>دراجة هوائية</h3>
+                    <p>70 دينار / 700 نقطة</p>
+                </div> <div class="item" onclick="openModal('كرسي خشبي', 'كرسي مصنوع من الخشب المعاد تدويره', 20, 200, './imgs/pexels-raymond-petrik-1448389535-27911161.jpg')">
+                    <img src="./imgs/pexels-raymond-petrik-1448389535-27911161.jpg" alt="كرسي خشبي">
+                    <h3>كرسي خشبي</h3>
+                    <p>20 دينار / 200 نقطة</p>
+                </div> <div class="item" onclick="openModal('أنابيب بلاستيكية', 'أنابيب بلاستيكية مصنوعة من البلاستيك المعاد تدويره', 10, 100, './imgs/pexels-rdne-8903270.jpg')">
+                    <img src="./imgs/pexels-rdne-8903270.jpg" alt="أنابيب بلاستيكية">
+                    <h3>أنابيب بلاستيكية</h3>
+                    <p>10 دينار / 100 نقطة</p>
+                </div> <div class="item" onclick="openModal('أنابيب بلاستيكية', 'أنابيب بلاستيكية من البلاستيك المعاد تدويره', 10, 100, './imgs/pexels-rdne-8903620.jpg')">
+                    <img src="./imgs/pexels-rdne-8903620.jpg" alt="أنابيب بلاستيكية">
+                    <h3>أنابيب بلاستيكية</h3>
+                    <p>10 دينار / 100 نقطة</p>
+                </div> <div class="item" onclick="openModal('رفوف خشبية', 'رفوف مصنوعة من الخشب المعاد تدويره', 60, 600, './imgs/pexels-polina-tankilevitch-3735219.jpg')">
+                    <img src="./imgs/pexels-polina-tankilevitch-3735219.jpg" alt="رفوف خشبية">
+                    <h3>رفوف خشبية</h3>
+                    <p>60 دينار / 600 نقطة</p>
+                </div> <div class="item" onclick="openModal('طاولة سفره خشبية', 'طاولة سفره مصنوعة من الخشب المعاد تدويره', 150, 1500, './imgs/pexels-tima-miroshnichenko-6826759.jpg')">
+                    <img src="./imgs/pexels-tima-miroshnichenko-6826759.jpg" alt="طاولة سفره خشبية">
+                    <h3>طاولة سفره خشبية</h3>
+                    <p>150 دينار / 1500 نقطة</p>
+                </div> 
+              
+                <!-- Repeat the item divs as required -->
+        
+            </div>
+            <!-- Modal for Item Details -->
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <img id="modal-image" src="" alt="Image">
+                    <h2 id="modal-title"></h2>
+                    <p id="modal-description"></p>
+                    <p id="modal-price"></p>
+                    <div class="purchase-buttons">
+                        <button onclick="purchaseWithPoints()">اشتري بالنقاط</button>
+                        <button onclick="purchaseWithCash()">اشتري كاش</button>
+                    </div>
+                </div>
+            </div>
+        
+            <script>
+                function openModal(title, description, price, points, imageSrc) {
+                    const modal = document.getElementById('modal');
+                    const modalImage = document.getElementById('modal-image');
+                    const modalTitle = document.getElementById('modal-title');
+                    const modalDescription = document.getElementById('modal-description');
+                    const modalPrice = document.getElementById('modal-price');
+                    
+                    modalImage.src = imageSrc;
+                    modalImage.alt = title;
+                    modalTitle.textContent = title;
+                    modalDescription.textContent = description;
+                    modalPrice.textContent = `${price} دينار أو ${points} نقطة`;
+                    
+                    modal.style.display = 'flex';
+                }
+
+                function closeModal() {
+                    document.getElementById('modal').style.display = 'none';
+                }
+
+                function purchaseWithPoints() {
+                    const points = document.getElementById('modal-price').textContent.split('أو')[1].trim();
+                    alert(`تمت عملية الشراء بنجاح باستخدام ${points}!`);
+                    closeModal();
+                }
+
+                function purchaseWithCash() {
+                    const cash = document.getElementById('modal-price').textContent.split('أو')[0].trim();
+                    alert(`تمت عملية الشراء نقداً بمبلغ ${cash}!`);
+                    closeModal();
+                }
+        
+                window.onclick = function(event) {
+                    const modal = document.getElementById('modal');
+                    if (event.target == modal) {
+                        closeModal();
+                    }
+                }
+            </script>
+        </body>
+        
+        </html>

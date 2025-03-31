@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital@0;1&family=Roboto:ital,wght@0,100..900;1,100..900&family=Sigmar&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة تجدد</title>
+    <link rel="stylesheet" href="Home.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['المواد العضوية',     8],
+          ['الورق',     3],
+          ['الزجاج',  2],
+          ['المعادن', 4],
+          ['البلاستيك',    7]
+        ]);
+
+        var options = {
+          title: 'قطاع أعادة التدوير في الاردن',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav>
+    <div class="logo">
+        <img src="./img/logo969-transparent-svg.svg" alt="الشعار">
+    </div>
+    <div class="menu-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12.5a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1h-10a.5.5 0 0 1-.5-.5zm0-5a.5.5 0 0 1 .5-.5h10a.5.5.5 0 0 1 0 1h-10a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+    </div>
+    <ul class="nav-links">
+        <li class="dropdown">
+            <a href="#" class="dropbtn">الرئيسية</a>
+            <div class="dropdown-content">
+                <a href="#section1">حول المنصة</a>
+                <a href="#statistics">الإحصائيات</a>
+                <a href="#section2">التجديد</a>
+                <a href="#section3">النمو</a> 
+                <a href="#recycling-benefits-jordan">التأثير</a> 
+                <a href="#recycling-tips">نصائح</a> 
+            </div>
+        </li>
+        </li>
+        <li><a href="Rewards.html">المكافآت</a></li>
+        <li><a href="./buyy.html">الشراء</a></li>
+        <li><a href="./Provider.html">المورد</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn">معلومات عامة</a>
+          <div class="dropdown-content">
+              <a href="./منصة تجدد/منصة تجدد/Aluminum.html">الألمنيوم <img src="./img/beer.png" alt="Icon 1" width="16" height="16"></a>
+              <a href="./منصة تجدد/منصة تجدد/Wood.html">الخشب <img src="./img/wood.png" alt="Icon 2" width="16" height="16"></a>
+              <a href="./منصة تجدد/منصة تجدد/Plastic.html">البلاستيك <img src="./img/bag.png" alt="Icon 3" width="16" height="16"></a>
+              <a href="./منصة تجدد/منصة تجدد/Cartoon.html">الكرتون <img src="./img/carton.png" alt="Icon 4" width="16" height="16"></a>
+          </div>
+        <li><a href="./contactus.html">الدعم</a></li>
+       
+    </ul>
+    <div class="search-box">
+        <input type="text" placeholder="ابحث هنا">
+        <button class="search-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+            </svg>
+        </button>
+    </div>
+    <div class="language-dropdown">
+        <select id="language-select">
+            <option value="en">English 🗽</option>
+            <option value="ar" selected>العربية 🕌</option>
+        </select>
+    </div>
+    <div class="nav-buttons">
+        <div class="wrapper">
+            <input type="checkbox" name="checkbox" class="switch">
+        </div>
+    </div>
+</nav>
+
+  
+    <section id="section1">
+      <div class="content">
+          <h1 class="display-4 fw-bold text-body-emphasis">منصة تَجَدُّد</h1>
+          <p dir="rtl">
+              هي مبادرة مبتكرة تهدف إلى إعادة تدوير المواد الخام المستخدمة من خلال جمعها وإرسالها إلى مصانع متخصصة لإعادة تدويرها بطرق مستدامة.
+              تضمن المنصة تقليل النفايات وتعزيز الاستدامة البيئية، مع تقديم نظام مكافآت مميز يُحفّز المستخدمين على المشاركة بفعالية في حماية البيئة🌱♻️.
+          </p>
+
+          <!-- Features Section -->
+          <div class="features">
+              <div class="feature-box">
+                  <h2>جمع المواد</h2>
+                  <p>نجمع المواد الخام من جميع أنحاء المدينة لضمان إعادة تدويرها بشكل صحيح، مما يقلل النفايات ويحافظ على البيئة. 🚛</p>
+                  <a href="./Provider.html">المزيد</a>
+              </div>
+              <div class="feature-box">
+                    <h2>متجر اعادة التدوير</h2>
+                    <p>متجرنا يقدم منتجات معاد تدويرها كالأثاث والديكورات والملابس، لتعزيز الاستدامة وتقليل النفايات. ♻️</p>
+                  <a href="./Store.html">المزيد</a>
+              </div>
+              <div class="feature-box">
+                  <h2>نظام المكافآت</h2>
+                  <p>اكسب نقاطًا ومكافآت عند المشاركة في برامج إعادة التدوير لدينا، وكن جزءًا من التغيير البيئي الإيجابي. 🎁</p>
+                  <a href="./Rewards.html">المزيد</a>
+              </div>
+          </div>
+      </div>
+  </section>
+  <hr class="featurette-divider">
+  <section id="statistics" class="statistics">
+    <div class="heading-box">
+      <h2>أحصائيات المنصة</h2>
+    </div>
+    
+    <div class="container">
+      <div class="statistics-counter"> 
+        <div class="col-md-3 col-sm-6">
+          <div class="single-ststistics-box">
+            <div class="statistics-content">
+              <div class="counter" data-target="90">0</div> <span>K+</span>
+            </div>
+            <h3>عدد القوائم</h3>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="single-ststistics-box">
+            <div class="statistics-content">
+              <div class="counter" data-target="40">0</div> <span>K+</span>
+            </div>
+            <h3>فئات القوائم</h3>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="single-ststistics-box">
+            <div class="statistics-content">
+              <div class="counter" data-target="65">0</div> <span>K+</span>
+            </div>
+            <h3>عدد الزوار</h3>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="single-ststistics-box">
+            <div class="statistics-content">
+              <div class="counter" data-target="50">0</div> <span>K+</span>
+            </div>
+            <h3>العملاء السعداء</h3>
+          </div>
+        </div>
+      </div>	
+    </div>
+</section>
+
+  
+
+
+  <hr class="featurette-divider">
+  
+      <div id="section2" class="row featurette">
+        <div class="col-md-7 order-md-2 text-center" style="margin-left: -20px; margin-top: 55px;">
+          <h2 class="featurette-heading fw-bold lh-1" dir="rtl">أهمية إعادة التدوير المستدام</h2>
+          <p class="lead" dir="rtl">إعادة التدوير تعد من أهم الحلول البيئية التي تساهم في الحفاظ على الموارد الطبيعية وتقليل التلوث. فهي تساعد في تقليل كمية النفايات المرسلة إلى المكبات، مما يحد من الانبعاثات الضارة ويحافظ على صحة البيئة. كما تسهم في توفير الطاقة المستخدمة في تصنيع المواد الجديدة، حيث إن إعادة استخدام المواد الخام يستهلك طاقة أقل بكثير من إنتاجها من الصفر. بالإضافة إلى ذلك، تعزز إعادة التدوير الاقتصاد من خلال خلق فرص عمل في مجالات جمع النفايات، وفرزها، ومعالجتها. لذا، فإن تبني ممارسات إعادة التدوير ليس مجرد خيار، بل هو ضرورة لضمان مستقبل مستدام للأجيال القادمة. 🌍✨</p>
+        </div>
+        <div class="col-md-5 order-md-1">
+          <img id="hover-img" src="./img/1.jpg" class="img-fluid mx-auto d-block" width="500" height="500" alt="Placeholder" style="margin-right: 20px; border-radius: 10px;">
+        </div>
+      </div>
+  
+  <hr class="featurette-divider">
+  <div id="section3" class="container py-4">
+    <div class="row align-items-center g-4"> <!-- Added gutter -->
+      <!-- Text Content Column -->
+      <div class="col-md-6">
+        <div class="content-wrapper h-100 p-3 shadow-sm rounded-3 bg-white"> <!-- Wrapper with styling -->
+          <h2 class="fw-bold text-center mb-4" dir="rtl" id="recycling-heading">اعادة التدوير في الاردن</h2>
+          <div class="scrollable-content border-top pt-3" dir="rtl"> <!-- Scrollable container -->
+            <p class="lead mb-0" id="recycling-paragraph">
+              تعد إعادة التدوير في الأردن قطاعًا ناشئًا يواجه العديد من التحديات، حيث لا تتجاوز نسبة إعادة التدوير 15% من إجمالي النفايات المنتجة سنويًا 🗑️. يعود ضعف إعادة التدوير إلى عدة أسباب رئيسية، من أبرزها غياب البنية التحتية المتطورة لأنظمة الفرز والتدوير ♻️، مما يؤدي إلى اختلاط النفايات وصعوبة إعادة استخدامها. كما يسهم ضعف الوعي البيئي لدى الأفراد والمنشآت 🏢 في تقليل مشاركة المجتمع في عمليات الفرز من المصدر. بالإضافة إلى ذلك، فإن محدودية الاستثمارات والدعم الحكومي 💰 تعيق تطوير تقنيات تدوير حديثة وفعالة. وعلى الرغم من ذلك، فإن قطاع إعادة التدوير يحمل فرصًا اقتصادية واعدة 📈، إذ يُقدَّر حجمه بأكثر من 500 مليون دينار، مما يستدعي تعزيز الجهود لدعمه من خلال سياسات حكومية واضحة، وزيادة التوعية، وتحفيز الاستثمارات في هذا المجال 🌍.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Chart Column -->
+      <div class="col-md-6">
+        <div class="chart-container h-100 p-3 shadow-sm rounded-3 bg-white d-flex align-items-center"> <!-- Wrapper for chart -->
+          <div id="piechart_3d" class="w-100"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+<hr class="featurette-divider">
+
+<div id="recycling-benefits-jordan" class="container my-5 p-4 border rounded shadow-lg bg-light" dir="rtl">
+  <h2 class="text-center fw-bold mb-4">فوائد إعادة التدوير في الأردن ♻️🇯🇴</h2>
+
+  <div class="row">
+    <!-- Left large div -->
+    <div class="col-md-8">
+      <ul class="list-unstyled">
+        <li class="mb-3">
+             <strong style="font-size: 1.2em; font-weight: bolder;">تقليل التلوث البيئي</strong>  
+            <p>تساعد إعادة التدوير في الحد من تراكم النفايات في المكبات العشوائية، مما يقلل من تلوث التربة والمياه الجوفية ويحدّ من انتشار الروائح الكريهة والغازات السامة مثل الميثان.</p>
+        </li>
+
+        <li class="mb-3">
+             <strong style="font-size: 1.2em; font-weight: bolder;">تقليل استهلاك الموارد الطبيعية</strong>  
+            <p>من خلال إعادة تدوير الورق والبلاستيك والزجاج والمعادن، يتم تقليل استهلاك الموارد الطبيعية مثل الأشجار والمعادن الخام والنفط، مما يحافظ على التوازن البيئي.</p>
+        </li>
+
+        <li class="mb-3">
+             <strong style="font-size: 1.2em; font-weight: bolder;">تقليل الضغط على مكبات النفايات</strong>  
+            <p>تعاني الأردن من قلة مساحات المكبات وزيادة إنتاج النفايات. يساهم التدوير في إطالة عمر المكبات وتقليل الحاجة إلى إنشاء مكبات جديدة.</p>
+        </li>
+
+        <li class="mb-3">
+             <strong style="font-size: 1.2em; font-weight: bolder;">توفير فرص عمل جديدة</strong>  
+            <p>يعد قطاع إعادة التدوير فرصة لتعزيز الاقتصاد من خلال خلق وظائف جديدة في مجالات جمع النفايات وفرزها وتصنيع المواد المعاد تدويرها، مما يدعم فئات عديدة من العمال.</p>
+        </li>
+
+        <li class="mb-3">
+             <strong style="font-size: 1.2em; font-weight: bolder;">تقليل تكاليف إدارة النفايات</strong>  
+            <p>تعتمد البلديات في الأردن على ميزانيات ضخمة لإدارة النفايات. يساعد التدوير في تخفيض هذه التكاليف، حيث يتم تحويل جزء من النفايات إلى منتجات قابلة لإعادة الاستخدام.</p>
+        </li>
+
+        <li class="mb-3">
+             <strong style="font-size: 1.2em; font-weight: bolder;">دعم الاقتصاد المحلي</strong>  
+            <p>يُقدر حجم قطاع إعادة التدوير في الأردن بأكثر من 500 مليون دينار، مما يجعله مجالًا استثماريًا واعدًا يمكن أن يجذب المستثمرين المحليين والأجانب.</p>
+        </li>
+
+        <li class="mb-3">
+             <strong style="font-size: 1.2em; font-weight: bolder;">تعزيز ثقافة الاستدامة</strong>  
+            <p>يساهم نشر الوعي حول إعادة التدوير في تشجيع الأفراد والمجتمعات على تبني ممارسات بيئية مستدامة، مثل فرز النفايات من المصدر وتقليل استخدام المنتجات البلاستيكية.</p>
+        </li>
+
+        <li class="mb-3">
+             <strong style="font-size: 1.2em; font-weight: bolder;">الحد من التغير المناخي</strong>  
+            <p>يساهم تقليل النفايات والانبعاثات الناتجة عن حرقها في تقليل البصمة الكربونية للأردن، مما يساعد في مكافحة التغير المناخي وتحسين جودة الهواء.</p>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Right smaller divs -->
+    <div class="col-md-4 d-flex flex-column">
+      <div class="mb-3">
+        <strong style="font-size: 1.2em; font-weight: bolder;">إعادة التدوير هي فرصة استراتيجية لمستقبل مستدام في الأردن! </strong>
+        <p style="font-size: 1.1em; text-align: center;">من خلال التدوير، نساهم في حماية بيئتنا وتحقيق تنمية مستدامة تعود بالفائدة على الجميع. 🌱</p>
+        
+      </div>
+      <div class="image-container">
+        <img id="hover-img-3" src="./img/jordan-map-design-with-flag-light-background-vector_1142-3683.jpg" alt="Jordan map design" class="img-fluid" height="1000px">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<hr class="featurette-divider">
+<div id="recycling-tips" class="container my-5 p-4 border rounded shadow-lg bg-light" dir="rtl">
+  <h2 class="text-center fw-bold mb-4">🔄 كيف تساهم في إعادة التدوير؟ 🤔♻️</h2>
+  
+  <ul class="list-unstyled">
+      <li class="mb-3">
+          <strong style="font-size: 1.2em; font-weight: bolder;">فرز النفايات من المصدر</strong>  
+          <p>خصّص صناديق منفصلة للنفايات العضوية، البلاستيك، الورق، الزجاج، والمعادن.  
+          تأكد من تنظيف العلب البلاستيكية والزجاجية قبل وضعها في صندوق التدوير.</p>
+      </li>
+
+      <li class="mb-3">
+          <strong style="font-size: 1.2em; font-weight: bolder;">تقليل الاستخدام وإعادة الاستخدام</strong>  
+          <p>استخدم أكياس قماشية بدلًا من البلاستيكية عند التسوق.  
+          اشترِ منتجات مصنوعة من مواد معاد تدويرها.  
+          أعد استخدام الورق والأكياس والزجاجات بدلًا من التخلص منها.</p>
+      </li>
+
+      <li class="mb-3">
+          <strong style="font-size: 1.2em; font-weight: bolder;">تدوير المخلفات العضوية</strong>  
+          <p>استخدم بقايا الطعام لصنع سماد طبيعي للحدائق.  
+          لا ترمِ بقايا الطعام في القمامة، بل استفد منها كسماد طبيعي.</p>
+      </li>
+
+      <li class="mb-3">
+          <strong style="font-size: 1.2em; font-weight: bolder;">دعم المنتجات والشركات المستدامة</strong>  
+          <p>اختر المنتجات القابلة للتحلل والمصنوعة من مواد معاد تدويرها.  
+          شجّع الشركات المحلية التي تعتمد على التدوير في إنتاجها.</p>
+      </li>
+
+      <li class="mb-3">
+          <strong style="font-size: 1.2em; font-weight: bolder;">إيصال النفايات إلى مراكز التدوير</strong>  
+          <p>ابحث عن أقرب مركز تدوير في منطقتك.  
+          تواصل مع الجهات المختصة لإرسال النفايات القابلة للتدوير إليها.</p>
+      </li>
+
+      <li class="mb-3">
+          <strong style="font-size: 1.2em; font-weight: bolder;">شارك في المبادرات البيئية</strong>  
+          <p>انضم إلى حملات إعادة التدوير المحلية.  
+          ساهم في نشر الوعي بين أصدقائك وعائلتك.  
+          شجّع الأطفال على تعلم أهمية إعادة التدوير منذ الصغر.</p>
+      </li>
+  </ul>
+
+  <div class="text-center mt-4">
+      <strong style="font-size: 1.3em; font-weight: bolder;">اجعل إعادة التدوير أسلوب حياة!</strong>
+  </div>
+</div>
+
+    <script src="./control.js"></script>
+    
+   
+</body>
+    <div class="container"></div>
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+          <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+            <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+          </a>
+          <span class="mb3 mb-md-0 text-body-secondary">© 2024 Company, Inc</span>
+        </div>
+    
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+          <li class="ms-3"><a class="text-body-secondary" href="https://www.facebook.com/?_rdc=1&_rdr#"><img src="./img/facebook_5968764.png" width="24" height="24" alt="Facebook"></a></li>
+          <li class="ms-3"><a class="text-body-secondary" href="https://www.instagram.com/"><img src="./img/instagram_2504918.png" width="24" height="24" alt="Instagram"></a></li>
+          <li class="ms-3"><a class="text-body-secondary" href="https://web.whatsapp.com/"><img src="./img/whatsapp_3938041.png" width="24" height="24" alt="WhatsApp"></a></li>
+        </ul>
+      </footer>
+    </div>
+</html>
+

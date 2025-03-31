@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+    <title>تواصل معنا</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            direction: rtl;
+        }
+        .nav-bar {
+            background: linear-gradient(135deg, #489b4c, #28a745, #00A5CF);
+            padding: 10px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            margin: 0 10px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .nav-bar a:hover {
+            background-color: #d0d0d0;
+            transform: scale(1.1);
+        }
+        .container {
+            width: 60%;
+            margin: auto;
+            padding: 20px;
+            margin-top: 50px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #006400;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #0f4d36;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0d8f62;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="./Home.html">العودة إلى الصفحة الرئيسية</a>
+    </div>
+    <div class="container">
+        <h2>تواصل معنا</h2>
+        <form id="contactForm" method="POST">
+            <input type="text" name="name" placeholder="الاسم" required>
+            <input type="email" name="email" placeholder="البريد الإلكتروني" required>
+            <input type="text" name="phone" placeholder="الهاتف" required>
+            <input type="text" name="subject" placeholder="الموضوع" required>
+            <textarea name="message" placeholder="الرسالة" rows="5" required></textarea>
+            <button type="submit">إرسال الآن</button>
+        </form>
+    </div>
+
+    <script>
+        // JavaScript to handle the form submission
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Create a FormData object from the form
+            var formData = new FormData(this);
+
+            // Send data to PHP using Fetch API
+            fetch('contact.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json()) // Expecting a JSON response
+            .then(data => {
+                // Show an alert with the response message
+                alert(data.message);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('حدث خطأ يرجى المحاولة لاحقاً');
+            });
+        });
+    </script>
+</body>
+</html>

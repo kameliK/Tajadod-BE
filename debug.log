@@ -1,0 +1,143 @@
+===== NEW REQUEST 2025-03-30 22:55:22 =====
+POST data: Array
+(
+    [first_name] => kamel
+    [last_name] => qandalaft
+    [country_code] => +962
+    [phone] => 790874211
+    [material] => ["plastic"]
+    [amount] => ["50"]
+    [collection_day] => 2025-03-12
+    [collection_time_from] => 16:55
+    [collection_time_to] => 17:55
+    [address] => kjbkbkjbkjkjjbjknjkbkjkjbb
+    [points] => 50
+    [provider_type] => Individual
+)
+
+
+Processed data: Array
+(
+    [first_name] => kamel
+    [last_name] => qandalaft
+    [country_code] => +962
+    [phone] => 790874211
+    [material] => plastic
+    [amount] => 50
+    [collection_day] => 2025-03-12
+    [collection_time_from] => 16:55
+    [collection_time_to] => 17:55
+    [address] => kjbkbkjbkjkjjbjknjkbkjkjbb
+    [category] => general
+    [points] => 100
+    [provider_type] => Individual
+)
+
+Record inserted successfully. ID: 2
+Record inserted successfully. ID: 1
+===== NEW REQUEST 2025-03-30 22:55:37 =====
+===== NEW REQUEST 2025-03-30 22:55:37 =====
+POST data: Array
+(
+    [first_name] => kamel
+    [last_name] => qandalaft
+    [country_code] => +962
+    [phone] => 790874211
+    [material] => ["plastic"]
+    [amount] => ["50"]
+    [collection_day] => 2025-03-12
+    [collection_time_from] => 16:55
+    [collection_time_to] => 17:55
+    [address] => kjbkbkjbkjkjjbjknjkbkjkjbb
+    [points] => 50
+    [provider_type] => Individual
+)
+
+POST data: Array
+(
+    [first_name] => kamel
+    [last_name] => qandalaft
+    [country_code] => +962
+    [phone] => 790874211
+    [material] => ["plastic"]
+    [amount] => ["50"]
+    [collection_day] => 2025-03-12
+    [collection_time_from] => 16:55
+    [collection_time_to] => 17:55
+    [address] => kjbkbkjbkjkjjbjknjkbkjkjbb
+    [points] => 100
+    [provider_type] => Individual
+)
+
+Processed data: Array
+(
+    [first_name] => kamel
+    [last_name] => qandalaft
+    [country_code] => +962
+    [phone] => 790874211
+    [material] => plastic
+    [amount] => 50
+    [collection_day] => 2025-03-12
+    [collection_time_from] => 16:55
+    [collection_time_to] => 17:55
+    [address] => kjbkbkjbkjkjjbjknjkbkjkjbb
+    [category] => general
+    [points] => 50
+    [provider_type] => Individual
+)
+
+Record inserted successfully. ID: 3
+Processed data: Array
+(
+    [first_name] => kamel
+    [last_name] => qandalaft
+    [country_code] => +962
+    [phone] => 790874211
+    [material] => plastic
+    [amount] => 50
+    [collection_day] => 2025-03-12
+    [collection_time_from] => 16:55
+    [collection_time_to] => 17:55
+    [address] => kjbkbkjbkjkjjbjknjkbkjkjbb
+    [category] => general
+    [points] => 100
+    [provider_type] => Individual
+)
+
+Record inserted successfully. ID: 4
+===== NEW REQUEST 2025-03-30 23:04:58 =====
+===== NEW REQUEST 2025-03-30 23:04:58 =====
+POST data: Array
+(
+    [first_name] => sdasdsfsdf
+    [last_name] => fdsdfdfs
+    [country_code] => Jordan
+    [phone] => 0790874211
+    [material] => ["wood"]
+    [amount] => ["5"]
+    [collection_day] => 2025-03-13
+    [collection_time_from] => 04:04
+    [collection_time_to] => 05:04
+    [address] => dasdsadasd
+    [points] => 10
+    [provider_type] => Individual
+)
+
+POST data: Array
+(
+    [first_name] => sdasdsfsdf
+    [last_name] => fdsdfdfs
+    [country_code] => Jordan
+    [phone] => 0790874211
+    [material] => ["wood"]
+    [amount] => ["5"]
+    [collection_day] => 2025-03-13
+    [collection_time_from] => 04:04
+    [collection_time_to] => 05:04
+    [address] => dasdsadasd
+    [points] => 100
+    [provider_type] => Individual
+)
+
+Record inserted successfully. ID: 5
+Record inserted successfully. ID: 6

@@ -1,0 +1,359 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    color: red;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: right;
+}
+
+.provider-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #2E7D32, #00A5CF);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+}
+
+.provider-header:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.provider-back-icon {
+    cursor: pointer;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.provider-container {
+    width: 90%;
+    max-width: 1180px;
+    margin: 50px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 5px #2E7D32;
+    color: black;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.provider-phone {
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    gap: 16px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto; 
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+#providerCountryCode {
+    width: 120px;
+    color: black;
+    border-color: #2E7D32;
+}
+
+.provider-required {
+    color: red;
+}
+
+.provider-material {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.provider-material-title {
+    text-align: center;
+    font-size: 24px;
+    color: #2E7D32;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.provider-material-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+.provider-material-item {
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.provider-material-item label {
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+}
+
+.provider-confirm-btn {
+    width: 50%;
+    padding: 15px;
+    font-size: 16px;
+    background: #2E7D32;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    margin: 20px auto;
+    display: block;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.form-check-input {
+    width: 25px; 
+    height: 25px; 
+    transform: scale(1.5);
+    border: 2px solid #2E7D32;
+}
+
+label {
+    display: flex;
+    justify-content: flex-end; 
+    direction: rtl; 
+    width: 100%; 
+}
+
+.provider-time-range {
+    width: 100%;
+    margin: 20px 0;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+.provider-time-range>h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #2E7D32;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.provider-time-range input[type="time"] {
+    flex-grow: 1; 
+    text-align: right; 
+    direction: rtl; 
+}
+
+.provider-time-range .d-flex > span {
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+}
+
+.custom-dropdown {
+    position: relative;
+    width: 250px;
+}
+
+.dropdown-btn {
+    padding: 10px 10px 10px 40px; 
+    border: solid 2px #2E7D32;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    background-size: 20px;
+    border-radius: 10px;
+}
+
+.dropdown-btn::after {
+    content: "▼";
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #2E7D32;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    width: 100%;
+    border: solid 2px #2E7D32;
+    background-color: #fff;
+    z-index: 1;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.dropdown-content div {
+    padding: 10px 10px 10px 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    background-size: 20px;
+}
+
+.dropdown-content div:hover {
+    background-color: #f1f1f1;
+}
+
+.flag-jo { background-image: url('https://flagcdn.com/jo.svg'); }
+.flag-ps { background-image: url('https://flagcdn.com/ps.svg'); }
+.flag-ae { background-image: url('https://flagcdn.com/ae.svg'); }
+.flag-lb { background-image: url('https://flagcdn.com/lb.svg'); }
+.flag-au { background-image: url('https://flagcdn.com/au.svg'); }
+.flag-fr { background-image: url('https://flagcdn.com/fr.svg'); }
+.flag-de { background-image: url('https://flagcdn.com/de.svg'); }
+.flag-jp { background-image: url('https://flagcdn.com/jp.svg'); }
+.flag-cn { background-image: url('https://flagcdn.com/cn.svg'); }
+.flag-it { background-image: url('https://flagcdn.com/it.svg'); }
+.flag-eg { background-image: url('https://flagcdn.com/eg.svg'); }
+.flag-kw { background-image: url('https://flagcdn.com/kw.svg'); }
+.flag-bh { background-image: url('https://flagcdn.com/bh.svg'); }
+.flag-gb { background-image: url('https://flagcdn.com/gb.svg'); }
+
+.provider-back-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #489b4c, #28a745, #00A5CF);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.provider-back-btn:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.provider-day-range {
+    width: 100%;
+    margin: 20px 0;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+.provider-day-range>h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #2E7D32;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.provider-day-range input[type="date"] {
+    flex-grow: 1;
+    text-align: right;
+    direction: rtl;
+    border: solid 2px #2E7D32;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/* Points Balance Input Styling - Modified to keep text fully visible */
+.container.mt-5 {
+    margin-right: 20px;
+}
+
+.container.mt-5 .form-floating {
+    width: 19%;
+    min-width: 220px; /* Minimum width to ensure text fits */
+    margin-bottom: 10px;
+}
+
+#providerAdditionalInput {
+    border: solid 3px #2E7D32;
+    border-radius: 20px;
+    padding: 1.625rem 20px 0.625rem 20px; /* Adjusted padding */
+    font-weight: bold;
+    background-color: antiquewhite;
+    text-align: right;
+    direction: rtl;
+    width: 100%;
+    box-sizing: border-box;
+    height: calc(3.5rem + 6px);
+    line-height: 1.25;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: visible; /* Ensure text is never hidden */
+}
+
+/* Keyframes for fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .provider-container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .provider-material-box {
+        grid-template-columns: 1fr;
+    }
+
+    .provider-confirm-btn {
+        width: 100%;
+    }
+
+    /* Points balance input adjustments for mobile */
+    .container.mt-5 .form-floating {
+        width: 220px !important; /* Fixed width on mobile */
+        margin-right: 0;
+        margin-left: auto;
+    }
+
+    #providerAdditionalInput {
+        padding: 1.625rem 15px 0.625rem 15px; /* Slightly reduced padding */
+    }
+}
+
+.company-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    animation: fadeIn 1.5s ease-in-out;
+    margin-left: auto;
+}
+
+.company-btn:hover {
+    background-color: #1B5E20;
+}

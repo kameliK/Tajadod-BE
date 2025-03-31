@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Become a Provider</title>
+    <link rel="stylesheet" href="./Provider.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+</head>
+<body>
+    
+      <header class="provider-header mb-3">
+        <button class="provider-back-btn" onclick="window.location.href='Home.html'">
+            <i class="fa-solid fa-arrow-left provider-back-icon"></i> العودة إلى الصفحة الرئيسية
+        </button>
+
+        <button class="company-btn" type="button">
+            شركة
+        </button>
+    </header>
+   
+   
+    <p> ملاحظة: نستقبل فقط المواد التي تزن ما بين 5كغ - 50كغ فقط</p>
+    
+    <p id="company-note">ملاحظة:  إذا كنت الطرف المستفاد منه هو من قبل شركة معينة فيرجى تعبئة النموذج الخاص بالشركات , و لذلك من خلال الضغط على زر "شركة" الموجود في الأعلى</p>
+
+    <div class="container mt-5" style="margin-right:20px">
+        <div class="form-floating mt-2" style="width:19%; margin-bottom: 10px;">
+            <input type="text" class="form-control" id="providerAdditionalInput" value=": رصيد النقاط " style="border:solid 3px #2E7D32; border-radius: 20px; padding-left:100px; font-weight: bold; background-color: antiquewhite; direction: ltr;" readonly>
+        </div>
+    </div>
+
+    <main class="provider-container mt-5">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="providerFirstName" placeholder="الأسم الثاني" style="border:solid 2px #2E7D32;" required>
+                    <label for="providerFirstName">الأسم الثاني<span class="provider-required">*</span></label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="providerLastName" placeholder="الأسم الأول" style="border:solid 2px #2E7D32;" required>
+                    <label for="providerLastName">الأسم الأول<span class="provider-required">*</span></label>
+                </div>
+            </div>
+        </div>
+        <hr>
+        
+        <div class="provider-phone d-flex gap-2 align-items-center">
+            <select id="providerCountryCode" class="form-select">
+                <option value="+962" data-flag="jo">+962 (Jordan)</option>
+                <option value="+970" data-flag="ps">+970 (Palestine)</option>
+                <option value="+971" data-flag="ae">+971 (UAE)</option>
+                <option value="+961" data-flag="lb">+961 (Lebanon)</option>
+                <option value="+61" data-flag="au">+61 (Australia)</option>
+                <option value="+33" data-flag="fr">+33 (France)</option>
+                <option value="+49" data-flag="de">+49 (Germany)</option>
+                <option value="+81" data-flag="jp">+81 (Japan)</option>
+                <option value="+86" data-flag="cn">+86 (China)</option>
+                <option value="+39" data-flag="it">+39 (Italy)</option>
+                <option value="+20" data-flag="eg">+20 (Egypt)</option>
+                <option value="+965" data-flag="kw">+965 (Kuwait)</option>
+                <option value="+973" data-flag="bh">+973 (Bahrain)</option>
+            </select>
+            <div class="custom-dropdown">
+                <div class="dropdown-btn" id="dropdownBtn">
+                    JO +962 (Jordan)
+                </div>
+                <div class="dropdown-content" id="dropdownContent"></div>
+            </div>
+        
+            <div class="form-floating flex-grow-1">
+                <input type="tel" id="providerPhone" class="form-control" placeholder="Phone Number" style="border:solid 2px #2E7D32;" required>
+                <label for="providerPhone">إدخل رقم الهاتف<span class="provider-required">*</span></label>
+            </div>
+        </div>
+        <hr>
+        
+        <div class="provider-material">
+            <h2 class="provider-material-title">اختار الشيئ الذي تريد إعادة تدويره</h2>
+            <div class="provider-material-box">
+                <div class="form-check provider-material-item">
+                    <input class="form-check-input" type="checkbox" id="wood" value="wood" style="border:solid 2px #2E7D32;">
+                    <label class="form-check-label" for="wood">خشب</label>
+                    <div class="form-floating">
+                        <input type="text" class="form-control wood-amount" placeholder="Amount" style="border:solid 2px #2E7D32;" required>
+                        <label for="providerAmount"> الكمية(5كغ-50كغ)</label>
+                    </div>
+                </div>
+                <div class="form-check provider-material-item">
+                    <input class="form-check-input" type="checkbox" id="aluminum" value="aluminum" style="border:solid 2px #2E7D32;">
+                    <label class="form-check-label" for="aluminum">المنيوم</label>
+                    <div class="form-floating">
+                        <input type="text" class="form-control aluminum-amount" placeholder="Amount" style="border:solid 2px #2E7D32;" required>
+                        <label for="providerAmount">الكمية (5كغ-50كغ)</label>
+                    </div>
+                </div>
+                <div class="form-check provider-material-item">
+                    <input class="form-check-input" type="checkbox" id="carton" value="carton" style="border:solid 2px #2E7D32;">
+                    <label class="form-check-label" for="carton">كرتون</label>
+                    <div class="form-floating">
+                        <input type="text" class="form-control carton-amount" placeholder="Amount" style="border:solid 2px #2E7D32;" required>
+                        <label for="providerAmount">الكمية (5كغ-50كغ)</label>
+                    </div>
+                </div>
+                <div class="form-check provider-material-item">
+                    <input class="form-check-input" type="checkbox" id="plastic" value="plastic" style="border:solid 2px #2E7D32;">
+                    <label class="form-check-label" for="plastic">بلاستيك</label>
+                    <div class="form-floating">
+                        <input type="text" class="form-control plastic-amount" placeholder="Amount" style="border:solid 2px #2E7D32;" required>
+                        <label for="providerAmount"> الكمية(5كغ-50كغ)</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <div class="provider-day-range">
+            <h2 class="text-center">حدد اليوم</h2>
+            <div class="d-flex gap-2 align-items-center">
+                <input type="date" class="form-control" id="providerDay" placeholder="حدد اليوم" style="border:solid 2px #2E7D32;" required>
+            </div>
+        </div>
+        <hr>
+
+        <div class="provider-time-range">
+            <h2 class="text-center">تحديد ساعات الإستلام</h2>
+            <div class="d-flex gap-2 align-items-center">
+                <input type="time" class="form-control" id="providerTimeFrom" placeholder="من" style="border:solid 2px #2E7D32;" required>
+                <span>إلى</span>
+                <input type="time" class="form-control" id="providerTimeTo" placeholder="إلى" style="border:solid 2px #2E7D32;" required>
+            </div>
+        </div>
+        <hr>
+        
+        <div class="form-floating">
+            <input type="text" class="form-control" id="providerAddress" placeholder="العنوان" style="border:solid 2px #2E7D32;" required>
+            <label for="providerAddress">العنوان<span class="provider-required">*</span></label>
+        </div>
+        <hr>
+
+        <div class="form-check">
+            <div class="d-flex align-items-center">
+                <label class="form-check-label" for="autoSizingCheck" style="margin-right: 35px;">Remember me</label>
+                <input class="form-check-input" type="checkbox" id="autoSizingCheck" style="border:solid 2px #2E7D32;">
+            </div>
+        </div>
+
+        <button type="button" class="provider-confirm-btn mt-3">تأكيد الطلب</button>    
+        
+        </main>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+    crossorigin="anonymous"></script> 
+    <script>
+    document.querySelector('.provider-confirm-btn').addEventListener('click', function() {
+    var firstName = document.getElementById('providerFirstName').value;
+    var lastName = document.getElementById('providerLastName').value;
+    var countryCode = document.getElementById('providerCountryCode').value;
+    var phone = document.getElementById('providerPhone').value;
+    var material = [];
+    var amount = [];
+
+    document.querySelectorAll('.provider-material-item input[type="checkbox"]:checked').forEach(function(checkbox) {
+        let qty = document.querySelector(`.${checkbox.value}-amount`).value;
+        if (qty < 5 || qty > 50) {
+            alert('يجب أن تكون الكمية بين 5كغ و 50كغ');
+            return;
+        }
+        material.push(checkbox.value);
+        amount.push(qty);
+    });
+
+    var collectionDay = document.getElementById('providerDay').value;
+    var collectionTimeFrom = document.getElementById('providerTimeFrom').value;
+    var collectionTimeTo = document.getElementById('providerTimeTo').value;
+    var address = document.getElementById('providerAddress').value;
+    var categoryInput = document.querySelector('.provider-category input[type="radio"]:checked');
+    var category = categoryInput ? categoryInput.value : "";
+    var points = 100; // Placeholder for now
+    var providerType = document.querySelector('#autoSizingCheck').checked ? "Company" : "Individual";
+
+    var formData = new FormData();
+    formData.append('first_name', firstName);
+    formData.append('last_name', lastName);
+    formData.append('country_code', countryCode);
+    formData.append('phone', phone);
+    formData.append('material', JSON.stringify(material));
+    formData.append('amount', JSON.stringify(amount));
+    formData.append('collection_day', collectionDay);
+    formData.append('collection_time_from', collectionTimeFrom);
+    formData.append('collection_time_to', collectionTimeTo);
+    formData.append('address', address);
+    formData.append('category', category);
+    formData.append('points', points);
+    formData.append('provider_type', providerType);
+
+    fetch('provider_backend.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert(data.success);
+            window.location.href = 'thank_you.html';
+        } else {
+            alert('خطأ: ' + data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('حدث خطأ يرجى المحاولة لاحقاً');
+    });
+});
+
+    </script>
+    <script src="./control.js"></script>
+
+  
+</body>
+</html>
