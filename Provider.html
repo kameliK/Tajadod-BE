@@ -158,71 +158,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
     crossorigin="anonymous"></script> 
-    <script>
-    document.querySelector('.provider-confirm-btn').addEventListener('click', function() {
-    var firstName = document.getElementById('providerFirstName').value;
-    var lastName = document.getElementById('providerLastName').value;
-    var countryCode = document.getElementById('providerCountryCode').value;
-    var phone = document.getElementById('providerPhone').value;
-    var material = [];
-    var amount = [];
-
-    document.querySelectorAll('.provider-material-item input[type="checkbox"]:checked').forEach(function(checkbox) {
-        let qty = document.querySelector(`.${checkbox.value}-amount`).value;
-        if (qty < 5 || qty > 50) {
-            alert('يجب أن تكون الكمية بين 5كغ و 50كغ');
-            return;
-        }
-        material.push(checkbox.value);
-        amount.push(qty);
-    });
-
-    var collectionDay = document.getElementById('providerDay').value;
-    var collectionTimeFrom = document.getElementById('providerTimeFrom').value;
-    var collectionTimeTo = document.getElementById('providerTimeTo').value;
-    var address = document.getElementById('providerAddress').value;
-    var categoryInput = document.querySelector('.provider-category input[type="radio"]:checked');
-    var category = categoryInput ? categoryInput.value : "";
-    var points = 100; // Placeholder for now
-    var providerType = document.querySelector('#autoSizingCheck').checked ? "Company" : "Individual";
-
-    var formData = new FormData();
-    formData.append('first_name', firstName);
-    formData.append('last_name', lastName);
-    formData.append('country_code', countryCode);
-    formData.append('phone', phone);
-    formData.append('material', JSON.stringify(material));
-    formData.append('amount', JSON.stringify(amount));
-    formData.append('collection_day', collectionDay);
-    formData.append('collection_time_from', collectionTimeFrom);
-    formData.append('collection_time_to', collectionTimeTo);
-    formData.append('address', address);
-    formData.append('category', category);
-    formData.append('points', points);
-    formData.append('provider_type', providerType);
-
-    fetch('provider_backend.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert(data.success);
-            window.location.href = 'thank_you.html';
-        } else {
-            alert('خطأ: ' + data.error);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('حدث خطأ يرجى المحاولة لاحقاً');
-    });
-});
-
-    </script>
     <script src="./control.js"></script>
 
-  
 </body>
 </html>

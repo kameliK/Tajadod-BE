@@ -22,7 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $collection_time_from = $conn->real_escape_string($_POST['collection_time_from'] ?? '');
     $collection_time_to = $conn->real_escape_string($_POST['collection_time_to'] ?? '');
     $address = $conn->real_escape_string($_POST['address'] ?? '');
-    $category = $conn->real_escape_string($_POST['category'] ?? '');
     $points = intval($_POST['points'] ?? 0);
     $provider_type = $conn->real_escape_string($_POST['provider_type'] ?? '');
 
@@ -34,16 +33,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die(json_encode(["error" => "Invalid material or amount data."]));
     }
 
+    // Validate required fields based on provider type
+    if ($provider_type === "Company") {
+        if (empty($first_name) || empty($last_name)) {
+            die(json_encode(["error" => "Company name and employee name are required."]));
+        }
+    } else if ($provider_type === "Individual") {
+        if (empty($first_name) || empty($last_name)) {
+            die(json_encode(["error" => "First name and last name are required."]));
+        }
+    } else {
+        die(json_encode(["error" => "Invalid provider type."]));
+    }
+
     // Convert arrays to strings for storage
     $material_str = implode(", ", array_map('htmlspecialchars', $material));
     $amount_str = implode(", ", array_map('htmlspecialchars', $amount));
 
     // Insert Data
-    $sql = "INSERT INTO providers (first_name, last_name, country_code, phone, material, amount, collection_day, collection_time_from, collection_time_to, address, category, points, provider_type)
-            VALUES ('$first_name', '$last_name', '$country_code', '$phone', '$material_str', '$amount_str', '$collection_day', '$collection_time_from', '$collection_time_to', '$address', '$category', '$points', '$provider_type')";
+    $sql = "INSERT INTO providers (first_name, last_name, country_code, phone, material, amount, collection_day, collection_time_from, collection_time_to, address, points, provider_type)
+            VALUES ('$first_name', '$last_name', '$country_code', '$phone', '$material_str', '$amount_str', '$collection_day', '$collection_time_from', '$collection_time_to', '$address', '$points', '$provider_type')";
 
     if ($conn->query($sql) === TRUE) {
-        echo json_encode(["success" => "تم إرسال الطلب بنجاح!"]);
+        echo json_encode(["success" => "تم إرسال الطلب بنجاح!"]); // Success message
     } else {
         echo json_encode(["error" => "Error: " . $conn->error]);
     }
