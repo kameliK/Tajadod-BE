@@ -334,6 +334,14 @@ label {
     #providerAdditionalInput {
         padding: 1.625rem 15px 0.625rem 15px; /* Slightly reduced padding */
     }
+
+    .row.g-3 {
+        display: flex;
+        flex-direction: column-reverse; /* Reverse the order of columns */
+    }
+    .col-md-6 {
+        width: 100%;
+    }
 }
 
 .company-btn {

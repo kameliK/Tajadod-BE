@@ -638,7 +638,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (!confirmBtn) return;
 
             confirmBtn.addEventListener('click', function() {
-                const isCompany = document.querySelector('.company-btn').textContent.trim() === 'فرد';
+                const isCompany = document.querySelector('.company-btn').textContent.trim() === 'شركة';
 
                 const firstName = isCompany
                     ? document.getElementById('providerEmployeeName').value
@@ -650,25 +650,60 @@ document.addEventListener("DOMContentLoaded", function() {
                 const phone = document.getElementById('providerPhone').value;
                 const material = [];
                 const amount = [];
+                let totalPoints = 0;
 
+                const pointsPerKg = {
+                    plastic: 1,
+                    carton: 4,
+                    wood: 2,
+                    aluminum: 3
+                };
+
+                let hasError = false;
+
+                // Validate material quantities and calculate points
                 document.querySelectorAll('.provider-material-item input[type="checkbox"]:checked').forEach(function(checkbox) {
-                    const qty = document.querySelector(`.${checkbox.value}-amount`).value;
-                    if (isCompany && (qty < 500 || qty > 1000)) {
-                        alert('يجب أن تكون الكمية بين 500كغ و 1 طن');
-                        return;
-                    } else if (!isCompany && (qty < 5 || qty > 50)) {
-                        alert('يجب أن تكون الكمية بين 5كغ و 50كغ');
+                    const qty = parseFloat(document.querySelector(`.${checkbox.value}-amount`).value);
+
+                    if (isNaN(qty)) {
+                        alert(`الرجاء إدخال كمية صحيحة للمادة: ${checkbox.value}`);
+                        hasError = true;
                         return;
                     }
+
+                    if (isCompany) {
+                        // Validation for "شركة" (Company)
+                        if (qty < 500 || qty > 1000) {
+                            alert(`يجب أن تكون الكمية بين 500كغ و 1 طن للمادة: ${checkbox.value}`);
+                            hasError = true;
+                            return;
+                        }
+                    } else {
+                        // Validation for "فرد" (Individual)
+                        if (qty < 5 || qty > 50) {
+                            alert(`يجب أن تكون الكمية بين 5كغ و 50كغ للمادة: ${checkbox.value}`);
+                            hasError = true;
+                            return;
+                        }
+                    }
+
                     material.push(checkbox.value);
                     amount.push(qty);
+
+                    // Calculate points for the material
+                    let points = pointsPerKg[checkbox.value] * qty;
+                    if (isCompany) {
+                        points *= 2; // Double the points for "شركة"
+                    }
+                    totalPoints += points;
                 });
+
+                if (hasError) return;
 
                 const collectionDay = document.getElementById('providerDay').value;
                 const collectionTimeFrom = document.getElementById('providerTimeFrom').value;
                 const collectionTimeTo = document.getElementById('providerTimeTo').value;
                 const address = document.getElementById('providerAddress').value;
-                const points = isCompany ? 500 : 100;
                 const providerType = isCompany ? 'Company' : 'Individual';
 
                 const formData = new FormData();
@@ -682,7 +717,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 formData.append('collection_time_from', collectionTimeFrom);
                 formData.append('collection_time_to', collectionTimeTo);
                 formData.append('address', address);
-                formData.append('points', points);
+                formData.append('points', totalPoints);
                 formData.append('provider_type', providerType);
 
                 fetch('provider_backend.php', {
@@ -693,7 +728,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     .then((data) => {
                         console.log(data);
                         if (data.success) {
-                            alert(data.success);
+                            alert(`تم تأكيد الطلب بنجاح! إجمالي النقاط المكتسبة: ${totalPoints}`);
                             window.location.href = 'thank_you.html';
                         } else {
                             alert('خطأ: ' + data.error);

@@ -57,7 +57,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->query($sql) === TRUE) {
         echo json_encode(["success" => "تم إرسال الطلب بنجاح!"]); // Success message
     } else {
-        echo json_encode(["error" => "Error: " . $conn->error]);
+        // Debugging: Output the SQL error
+        echo json_encode(["error" => "Database error: " . $conn->error, "sql" => $sql]);
     }
 }
 
