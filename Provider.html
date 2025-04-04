@@ -159,6 +159,67 @@
      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
     crossorigin="anonymous"></script> 
     <script src="./control.js"></script>
+    <script>
+        document.querySelector('.provider-confirm-btn').addEventListener('click', async () => {
+            const formData = new FormData();
+            formData.append('first_name', document.getElementById('providerFirstName').value);
+            formData.append('last_name', document.getElementById('providerLastName').value);
+            formData.append('country_code', document.getElementById('providerCountryCode').value);
+            formData.append('phone', document.getElementById('providerPhone').value);
+            formData.append('collection_day', document.getElementById('providerDay').value);
+            formData.append('collection_time_from', document.getElementById('providerTimeFrom').value);
+            formData.append('collection_time_to', document.getElementById('providerTimeTo').value);
+            formData.append('address', document.getElementById('providerAddress').value);
+
+            const materials = [];
+            const amounts = [];
+            let totalPoints = 0;
+
+            const pointsPerKg = {
+                wood: 2,
+                aluminum: 3,
+                carton: 4,
+                plastic: 1
+            };
+
+            document.querySelectorAll('.provider-material-item').forEach(item => {
+                const checkbox = item.querySelector('.form-check-input');
+                const amountInput = item.querySelector('.form-control');
+                if (checkbox.checked) {
+                    const material = checkbox.value;
+                    const amount = parseFloat(amountInput.value);
+                    if (!isNaN(amount)) {
+                        materials.push(material);
+                        amounts.push(amount);
+                        totalPoints += (pointsPerKg[material] || 0) * amount;
+                    }
+                }
+            });
+
+            formData.append('material', JSON.stringify(materials));
+            formData.append('amount', JSON.stringify(amounts));
+            formData.append('points', totalPoints); // Send calculated points
+            formData.append('provider_type', 'individual'); // Example value
+
+            try {
+                const response = await fetch('provider_backend.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    alert(result.success);
+                    window.location.href = result.redirect; // Redirect to thank_you.html
+                } else {
+                    alert(result.error);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('حدث خطأ أثناء إرسال الطلب.');
+            }
+        });
+    </script>
 
 </body>
 </html>

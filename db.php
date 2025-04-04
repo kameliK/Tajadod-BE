@@ -1,15 +1,14 @@
 <?php
-// Database credentials
-$host = "localhost";
+$servername = "localhost";
 $username = "root";
-$password = "";
-$database = "recycle_site";
+$password = ""; // default for XAMPP
+$dbname = "recycle_db"; // This database contains both 'messages' and 'providers' tables
 
-// Create a connection to the database
-$conn = new mysqli($host, $username, $password, $database);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check for connection errors
+// Check for DB connection errors
 if ($conn->connect_error) {
-    die("Database connection failed: " . $conn->connect_error);
+    error_log("Connection failed: " . $conn->connect_error);
+    die("Connection failed: " . $conn->connect_error);
 }
 ?>

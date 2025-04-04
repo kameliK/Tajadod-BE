@@ -94,14 +94,25 @@
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.json()) // Expecting a JSON response
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json(); // Expecting a JSON response
+            })
             .then(data => {
-                // Show an alert with the response message
-                alert(data.message);
+                if (data.success) {
+                    alert(data.success); // Show success message
+                    document.getElementById('contactForm').reset(); // Reset the form
+                } else if (data.error) {
+                    alert(data.error); // Show error message
+                } else {
+                    alert('حدث خطأ غير متوقع. يرجى المحاولة لاحقاً.');
+                }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('حدث خطأ يرجى المحاولة لاحقاً');
+                alert('حدث خطأ في الاتصال بالخادم. يرجى المحاولة لاحقاً.');
             });
         });
     </script>

@@ -1,65 +1,58 @@
 <?php
-// Show detailed errors for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Database connection
-$host = "localhost";
-$user = "root"; // Default XAMPP MySQL username
-$pass = ""; // Leave blank if no password
-$dbname = "recycle_db";
+require_once 'db.php';
 
-// Create connection
-$conn = new mysqli($host, $user, $pass, $dbname);
+header('Content-Type: application/json');
+$response = [];
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Initialize response array
-$response = array();
-
-// Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (!isset($_POST['name'], $_POST['email'], $_POST['phone'], $_POST['subject'], $_POST['message'])) {
-        $response['message'] = "Missing form fields!";
+    $required_fields = ['name', 'email', 'phone', 'subject', 'message'];
+    foreach ($required_fields as $field) {
+        if (!isset($_POST[$field]) || empty(trim($_POST[$field]))) {
+            $response['error'] = "يرجى ملء جميع الحقول المطلوبة!";
+            echo json_encode($response);
+            exit;
+        }
+    }
+
+    $name = htmlspecialchars(trim($_POST['name']), ENT_QUOTES, 'UTF-8');
+    $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+    $phone = htmlspecialchars(trim($_POST['phone']), ENT_QUOTES, 'UTF-8');
+    $subject = htmlspecialchars(trim($_POST['subject']), ENT_QUOTES, 'UTF-8');
+    $message = htmlspecialchars(trim($_POST['message']), ENT_QUOTES, 'UTF-8');
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $response['error'] = "يرجى إدخال بريد إلكتروني صالح!";
         echo json_encode($response);
         exit;
     }
 
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $subject = $_POST['subject'];
-    $message = $_POST['message'];
-
-    // Insert data into database
     $sql = "INSERT INTO messages (name, email, phone, subject, message) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
 
     if (!$stmt) {
-        $response['message'] = "SQL Error: " . $conn->error;
+        error_log("Database error: " . $conn->error);
+        $response['error'] = "خطأ في قاعدة البيانات: " . $conn->error;
         echo json_encode($response);
         exit;
     }
 
-    // Bind parameters to the prepared statement
     $stmt->bind_param("sssss", $name, $email, $phone, $subject, $message);
 
     if ($stmt->execute()) {
-        // If successful, send success message
-        $response['message'] = 'تم إرسال الرسالة بنجاح!';
+        $response['success'] = 'تم إرسال الرسالة بنجاح!';
     } else {
-        // If failed, send error message
-        $response['message'] = 'حدث خطأ يرجى المحاولة لاحقاً: ' . $conn->error;
+        error_log("Statement error: " . $stmt->error);
+        $response['error'] = 'حدث خطأ يرجى المحاولة لاحقاً: ' . $stmt->error;
     }
 
     $stmt->close();
+} else {
+    $response['error'] = "طلب غير صالح!";
 }
 
 $conn->close();
-
-// Send the response as JSON
 echo json_encode($response);
 ?>
