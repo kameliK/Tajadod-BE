@@ -47,15 +47,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($provider_type === 'Company') {
         foreach ($amount as $qty) {
             if ($qty < 500 || $qty > 1000) {
+                error_log("Invalid quantity for Company: $qty"); // Debugging log
                 die(json_encode(["error" => "Invalid quantity for Company. Must be between 500kg and 1 ton."]));
             }
         }
-    } else { // Individual
+    } elseif ($provider_type === 'Individual') { // Ensure correct handling for individual
         foreach ($amount as $qty) {
             if ($qty < 5 || $qty > 50) {
+                error_log("Invalid quantity for Individual: $qty"); // Debugging log
                 die(json_encode(["error" => "Invalid quantity for Individual. Must be between 5kg and 50kg."]));
             }
         }
+    } else {
+        error_log("Invalid provider type: $provider_type"); // Debugging log
+        die(json_encode(["error" => "Invalid provider type."])); // Handle invalid provider type
     }
 
     $material_str = implode(", ", array_map('htmlspecialchars', $material));
@@ -68,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare($sql);
 
     if (!$stmt) {
-        error_log("Database error: " . $conn->error);
+        error_log("Database error: " . $conn->error); // Debugging log
         echo json_encode(["error" => "Database error: " . $conn->error]);
         exit;
     }
@@ -79,10 +84,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $collection_time_to, $address, $points, $provider_type);
 
     if ($stmt->execute()) {
-        // Redirect to thank_you.html after successful insertion
+        error_log("Data successfully inserted for provider type: $provider_type"); // Debugging log
         echo json_encode(["success" => "تم إرسال الطلب بنجاح!", "redirect" => "thank_you.html"]);
     } else {
-        error_log("Statement error: " . $stmt->error);
+        error_log("Statement error: " . $stmt->error); // Debugging log
         echo json_encode(["error" => "Database error: " . $stmt->error]);
     }
 

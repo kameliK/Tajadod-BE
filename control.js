@@ -622,9 +622,13 @@ document.addEventListener("DOMContentLoaded", function() {
             const confirmBtn = document.querySelector('.provider-confirm-btn');
             if (!confirmBtn) return;
 
-            confirmBtn.addEventListener('click', function() {
+            confirmBtn.addEventListener('click', async function(event) {
+                const confirmButton = event.target;
+                confirmButton.disabled = true; // Disable the button to prevent multiple clicks
+
                 const isCompany = document.querySelector('.company-btn').textContent.trim() === 'شركة';
 
+                // Get user details
                 const firstName = isCompany
                     ? document.getElementById('providerEmployeeName').value
                     : document.getElementById('providerFirstName').value;
@@ -633,9 +637,17 @@ document.addEventListener("DOMContentLoaded", function() {
                     : document.getElementById('providerLastName').value;
                 const countryCode = document.getElementById('providerCountryCode').value;
                 const phone = document.getElementById('providerPhone').value;
-                const material = [];
-                const amount = [];
+                const collectionDay = document.getElementById('providerDay').value;
+                const collectionTimeFrom = document.getElementById('providerTimeFrom').value;
+                const collectionTimeTo = document.getElementById('providerTimeTo').value;
+                const address = document.getElementById('providerAddress').value;
+
+                // Material handling
+                const materials = [];
+                const amounts = [];
+                let totalKg = 0;
                 let totalPoints = 0;
+                let totalAmount = 0;
 
                 const pointsPerKg = {
                     plastic: 1,
@@ -644,85 +656,91 @@ document.addEventListener("DOMContentLoaded", function() {
                     aluminum: 3
                 };
 
-                let hasError = false;
+                const pricePerKg = {
+                    plastic: 0.1,
+                    carton: 0.2,
+                    aluminum: 0.25,
+                    wood: 0.15
+                };
 
-                // Validate material quantities and calculate points
-                document.querySelectorAll('.provider-material-item input[type="checkbox"]:checked').forEach(function(checkbox) {
-                    const qty = parseFloat(document.querySelector(`.${checkbox.value}-amount`).value);
+                // Validate and calculate materials
+                let hasError = false;
+                document.querySelectorAll('.provider-material-item input[type="checkbox"]:checked').forEach(function(item) {
+                    const material = item.value;
+                    const qtyInput = document.querySelector(`.${material}-amount`);
+                    const qty = parseFloat(qtyInput ? qtyInput.value : 0);
 
                     if (isNaN(qty)) {
-                        alert(`الرجاء إدخال كمية صحيحة للمادة: ${checkbox.value}`);
+                        alert(`الرجاء إدخال كمية صحيحة للمادة: ${material}`);
                         hasError = true;
                         return;
                     }
 
                     if (isCompany) {
-                        // Validation for "شركة" (Company)
                         if (qty < 500 || qty > 1000) {
-                            alert(`يجب أن تكون الكمية بين 500كغ و 1 طن للمادة: ${checkbox.value}`);
+                            alert(`يجب أن تكون الكمية بين 500كغ و 1 طن للمادة: ${material}`);
                             hasError = true;
                             return;
                         }
                     } else {
-                        // Validation for "فرد" (Individual)
                         if (qty < 5 || qty > 50) {
-                            alert(`يجب أن تكون الكمية بين 5كغ و 50كغ للمادة: ${checkbox.value}`);
+                            alert(`يجب أن تكون الكمية بين 5كغ و 50كغ للمادة: ${material}`);
                             hasError = true;
                             return;
                         }
                     }
 
-                    material.push(checkbox.value);
-                    amount.push(qty);
-
-                    // Calculate points for the material
-                    let points = pointsPerKg[checkbox.value] * qty;
-                    if (isCompany) {
-                        points *= 2; // Double the points for "شركة"
-                    }
+                    materials.push(material);
+                    amounts.push(qty);
+                    totalKg += qty;
+                    
+                    let points = pointsPerKg[material] * qty;
+                    if (isCompany) points *= 2; // Double points for companies
                     totalPoints += points;
+                    
+                    totalAmount += (pricePerKg[material] || 0) * qty;
                 });
 
-                if (hasError) return;
+                if (hasError) {
+                    confirmButton.disabled = false;
+                    return;
+                }
 
-                const collectionDay = document.getElementById('providerDay').value;
-                const collectionTimeFrom = document.getElementById('providerTimeFrom').value;
-                const collectionTimeTo = document.getElementById('providerTimeTo').value;
-                const address = document.getElementById('providerAddress').value;
-                const providerType = isCompany ? 'Company' : 'Individual';
-
+                // Prepare form data
                 const formData = new FormData();
                 formData.append('first_name', firstName);
                 formData.append('last_name', lastName);
                 formData.append('country_code', countryCode);
                 formData.append('phone', phone);
-                formData.append('material', JSON.stringify(material));
-                formData.append('amount', JSON.stringify(amount));
+                formData.append('material', JSON.stringify(materials));
+                formData.append('amount', JSON.stringify(amounts));
                 formData.append('collection_day', collectionDay);
                 formData.append('collection_time_from', collectionTimeFrom);
                 formData.append('collection_time_to', collectionTimeTo);
                 formData.append('address', address);
                 formData.append('points', totalPoints);
-                formData.append('provider_type', providerType);
+                formData.append('provider_type', isCompany ? 'Company' : 'Individual');
 
-                fetch('provider_backend.php', {
-                    method: 'POST',
-                    body: formData,
-                })
-                    .then((response) => response.json())
-                    .then((data) => {
-                        console.log(data);
-                        if (data.success) {
-                            alert(`تم تأكيد الطلب بنجاح! إجمالي النقاط المكتسبة: ${totalPoints}`);
-                            window.location.href = 'thank_you.html';
-                        } else {
-                            alert('خطأ: ' + data.error);
-                        }
-                    })
-                    .catch((error) => {
-                        console.error('Error:', error);
-                        alert('حدث خطأ يرجى المحاولة لاحقاً');
+                try {
+                    const response = await fetch('provider_backend.php', {
+                        method: 'POST',
+                        body: formData
                     });
+                    const result = await response.json();
+
+                    if (result.success) {
+                        const successMessage = `تمت العملية بنجاح!\nلقد بعت لنا ${totalKg} كغ.\nالمبلغ المستحق: ${totalAmount.toFixed(2)} دينار.\nالنقاط المكتسبة: ${totalPoints} نقطة.`;
+                        alert(successMessage);
+                        window.location.href = result.redirect || 'thank_you.html';
+                    } else {
+                        alert(result.error || 'حدث خطأ أثناء إرسال الطلب.');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('حدث خطأ يرجى المحاولة لاحقاً');
+                } finally {
+                    confirmButton.disabled = false;
+                }
             });
         }
     };
