@@ -365,3 +365,140 @@ label {
 .company-btn:hover {
     background-color: #1B5E20;
 }
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes colorChange {
+    0% { background-color: white; }
+    25% { background-color: #e8f5e9; }
+    50% { background-color: #c8e6c9; }
+    75% { background-color: #e8f5e9; }
+    100% { background-color: white; }
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+@keyframes growDown {
+    0% { transform: scaleY(0); opacity: 0; }
+    80% { transform: scaleY(1.1); opacity: 0.8; }
+    100% { transform: scaleY(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes animatedBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.provider-confirm-btn {
+    animation: fadeIn 1.5s ease-in-out, pulse 2s infinite;
+}
+
+.provider-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #2E7D32, #00A5CF);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out, animatedBackground 10s infinite alternate, bounce 1s 1s;
+    background-size: 200% 200%;
+}
+
+.provider-header:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.provider-required {
+    animation: shake 0.5s 2s;
+}
+
+.provider-time-range {
+    animation: slideInRight 0.8s ease-out;
+}
+
+.company-btn {
+    animation: fadeIn 1.5s ease-in-out, colorChange 8s infinite;
+}
+
+.company-btn:hover {
+    background-color: #1B5E20;
+    animation: none;
+}
+
+.provider-material-title {
+    animation: flicker 3s infinite;
+}
+
+.provider-material-box {
+    perspective: 1000px;
+}
+
+.provider-material-item {
+    animation: fadeIn 0.5s ease-in-out forwards;
+    opacity: 0;
+    transform-style: preserve-3d;
+}
+
+.provider-material-item:nth-child(1) { animation-delay: 0.1s; }
+.provider-material-item:nth-child(2) { animation-delay: 0.2s; }
+.provider-material-item:nth-child(3) { animation-delay: 0.3s; }
+.provider-material-item:nth-child(4) { animation-delay: 0.4s; }
+.provider-material-item:nth-child(5) { animation-delay: 0.5s; }
+.provider-material-item:nth-child(6) { animation-delay: 0.6s; }
+.provider-material-item:nth-child(7) { animation-delay: 0.7s; }
+.provider-material-item:nth-child(8) { animation-delay: 0.8s; }
+
+.dropdown-content {
+    animation: growDown 0.3s ease-in-out forwards;
+    transform-origin: top center;
+}
+
+.provider-container {
+    width: 90%;
+    max-width: 1180px;
+    margin: 50px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 5px #2E7D32;
+    color: black;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.provider-back-btn:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease-in-out;
+}

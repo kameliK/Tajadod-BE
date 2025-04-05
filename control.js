@@ -508,6 +508,26 @@ document.addEventListener("DOMContentLoaded", function() {
                 const isCompany = companyBtn.textContent.trim() === 'شركة';
                 companyBtn.textContent = isCompany ? 'فرد' : 'شركة';
 
+                // Update the text of the paragraphs
+                const noteParagraph = document.querySelector('p');
+                const companyNoteParagraph = document.getElementById('company-note');
+
+                if (isCompany) {
+                    if (noteParagraph) {
+                        noteParagraph.textContent = 'ملاحظة: نستقبل المواد من ٥٠٠كغ - ١٠٠٠كغ';
+                    }
+                    if (companyNoteParagraph) {
+                        companyNoteParagraph.textContent = 'ملاحظة: إذا كنت الطرف المستفاد منه هو من قبل فرد معين فيرجى تعبئة النموذج الخاص بالأفراد , و لذلك من خلال الضغط على زر "فرد" الموجود في الأعلى';
+                    }
+                } else {
+                    if (noteParagraph) {
+                        noteParagraph.textContent = 'ملاحظة: نستقبل فقط المواد التي تزن ما بين ٥كغ - ٥٠كغ فقط';
+                    }
+                    if (companyNoteParagraph) {
+                        companyNoteParagraph.textContent = 'ملاحظة:  إذا كنت الطرف المستفاد منه هو من قبل شركة معينة فيرجى تعبئة النموذج الخاص بالشركات , و لذلك من خلال الضغط على زر "شركة" الموجود في الأعلى';
+                    }
+                }
+
                 const formContainer = document.querySelector('.row.g-3');
                 const materialContainer = document.querySelector('.provider-material-box');
 
