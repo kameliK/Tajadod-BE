@@ -567,3 +567,18 @@ h1::after {
         padding-top: 30px;
     }
 }
+.fas fa-home{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #489b4c, #28a745, #00A5CF);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    animation: fadeIn 1.5s ease-in-out; 
+}

@@ -28,7 +28,7 @@
     
     <p id="company-note">ملاحظة:  إذا كنت الطرف المستفاد منه هو من قبل شركة معينة فيرجى تعبئة النموذج الخاص بالشركات , و لذلك من خلال الضغط على زر "شركة" الموجود في الأعلى</p>
 
-    <div class="container mt-5" style="margin-right:20px">
+    <div class="container mt-5 points-container" style="margin-right:20px">
         <div class="form-floating mt-2" style="width:19%; margin-bottom: 10px;">
             <input type="text" class="form-control" id="providerAdditionalInput" value=": رصيد النقاط " style="border:solid 3px #2E7D32; border-radius: 20px; padding-left:100px; font-weight: bold; background-color: antiquewhite; direction: ltr;" readonly>
         </div>
@@ -159,6 +159,91 @@
      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
     crossorigin="anonymous"></script> 
     <script src="./control.js"></script>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const firstNameInput = document.getElementById("providerFirstName");
+    const lastNameInput = document.getElementById("providerLastName");
+    const organizationNameInput = document.getElementById("providerOrganizationName");
+    const pointsInput = document.getElementById("providerAdditionalInput");
+    const companyBtn = document.querySelector(".company-btn");
+    const pointsContainer = document.querySelector(".points-container");
+
+    let providerType = "Individual"; // Default to Individual
+
+    // Toggle provider type and hide/show points container
+    companyBtn.addEventListener("click", function () {
+        providerType = providerType === "Individual" ? "Company" : "Individual";
+        companyBtn.textContent = providerType === "Individual" ? "شركة" : "فرد";
+
+        // Hide points container when "شركة" is selected
+        pointsContainer.style.display = providerType === "Company" ? "none" : "block";
+    });
+
+    function fetchPoints() {
+        const firstName = firstNameInput.value.trim();
+        const lastName = lastNameInput ? lastNameInput.value.trim() : "";
+        const organizationName = organizationNameInput ? organizationNameInput.value.trim() : "";
+
+        if (providerType === "Company" && firstName && organizationName) {
+            fetch("provider_backend.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    action: "fetch_points",
+                    first_name: firstName,
+                    organization_name: organizationName,
+                    provider_type: providerType,
+                }),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.success) {
+                        pointsInput.value = `رصيد النقاط: ${data.points}`;
+                    } else {
+                        pointsInput.value = "رصيد النقاط: غير متوفر";
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error fetching points:", error);
+                    pointsInput.value = "رصيد النقاط: خطأ";
+                });
+        } else if (providerType === "Individual" && firstName && lastName) {
+            fetch("provider_backend.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    action: "fetch_points",
+                    first_name: firstName,
+                    last_name: lastName,
+                    provider_type: providerType,
+                }),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.success) {
+                        pointsInput.value = `رصيد النقاط: ${data.points}`;
+                    } else {
+                        pointsInput.value = "رصيد النقاط: غير متوفر";
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error fetching points:", error);
+                    pointsInput.value = "رصيد النقاط: خطأ";
+                });
+        } else {
+            pointsInput.value = ": رصيد النقاط ";
+        }
+    }
+
+    firstNameInput.addEventListener("input", fetchPoints);
+    if (lastNameInput) lastNameInput.addEventListener("input", fetchPoints);
+    if (organizationNameInput) organizationNameInput.addEventListener("input", fetchPoints);
+});
+</script>
 
 </body>
 </html>

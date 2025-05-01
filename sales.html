@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عرض حركات البيع</title>
+    <style>
+        :root {
+            --primary-color: #2E7D32;
+            --primary-dark: #1B5E20;
+            --primary-light: #81C784;
+            --secondary-color: #00A5CF;
+            --accent-color: #FFC107;
+            --light-bg: #E8F5E9;
+            --dark-text: #263238;
+            --light-text: #FFFFFF;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --gradient: linear-gradient(135deg, var(--primary-dark), var(--primary-color), var(--secondary-color));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            direction: rtl;
+            text-align: right;
+            color: var(--dark-text);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-wrapper {
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+        }
+
+        .container {
+            width: 100%;
+            padding: 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .container:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            text-align: center;
+            color: var(--primary-dark);
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 60px;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 3px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 8px;
+            font-weight: 500;
+            color: var(--primary-dark);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            font-size: 16px;
+            transition: var(--transition);
+            background-color: #f9f9f9;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(129, 199, 132, 0.2);
+            background-color: white;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            margin-top: 20px;
+            background: var(--gradient);
+            color: var(--light-text);
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="submit"]:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-1px);
+        }
+
+        input[type="submit"]:active {
+            transform: translateY(0);
+        }
+
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #489b4c, #28a745, #00A5CF);
+            gap: 8px;
+            margin-bottom: 15px;
+            padding: 12px 24px;
+            color: var(--light-text);
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            align-self: flex-start;
+            margin-left: auto; /* This will position it to the left in RTL */
+        }
+
+        .back-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 25%, rgba(255,255,255,0.2) 50%, transparent 75%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .back-button:hover {
+            background-color: #66BB6A;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .back-button:hover::after {
+            transform: translateX(100%);
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px 20px;
+            }
+            
+            input[type="text"], 
+            input[type="submit"] {
+                padding: 10px 12px;
+            }
+            
+            .back-button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-wrapper">
+        <a href="./Home.html" class="back-button">العودة إلى الصفحة الرئيسية</a>
+        
+        <div class="container">
+            <h2>عرض حركات البيع</h2>
+            <form action="show_sales.php" method="POST">
+                <label>الاسم الأول:</label>
+                <input type="text" name="first_name" required placeholder="أدخل الاسم الأول">
+
+                <label>الاسم الثاني:</label>
+                <input type="text" name="last_name" required placeholder="أدخل الاسم الثاني">
+
+                <label>رقم الهاتف:</label>
+                <input type="text" name="phone" required placeholder="أدخل رقم الهاتف">
+
+                <input type="submit" value="عرض الحركات">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -90,45 +90,47 @@
             </div>
         
             <script>
-                function openModal(title, description, price, points, imageSrc) {
-                    const modal = document.getElementById('modal');
-                    const modalImage = document.getElementById('modal-image');
-                    const modalTitle = document.getElementById('modal-title');
-                    const modalDescription = document.getElementById('modal-description');
-                    const modalPrice = document.getElementById('modal-price');
-                    
-                    modalImage.src = imageSrc;
-                    modalImage.alt = title;
-                    modalTitle.textContent = title;
-                    modalDescription.textContent = description;
-                    modalPrice.textContent = `${price} دينار أو ${points} نقطة`;
-                    
-                    modal.style.display = 'flex';
-                }
+            function openModal(title, description, price, points, imageSrc) {
+      document.getElementById('modal').style.display = 'flex';
+      document.getElementById('modal-image').src = imageSrc;
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-description').textContent = description;
+      document.getElementById('modal-price').textContent = `${price} دينار أو ${points} نقطة`;
+    }
 
-                function closeModal() {
-                    document.getElementById('modal').style.display = 'none';
-                }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
 
-                function purchaseWithPoints() {
-                    const points = document.getElementById('modal-price').textContent.split('أو')[1].trim();
-                    alert(`تمت عملية الشراء بنجاح باستخدام ${points}!`);
-                    closeModal();
-                }
+    function purchaseWithPoints() {
+  const itemTitle = document.getElementById('modal-title').textContent;
+  const itemPriceText = document.getElementById('modal-price').textContent;
+  const points = parseInt(itemPriceText.split("نقطة")[0].split("أو")[1].trim());
 
-                function purchaseWithCash() {
-                    const cash = document.getElementById('modal-price').textContent.split('أو')[0].trim();
-                    alert(`تمت عملية الشراء نقداً بمبلغ ${cash}!`);
-                    closeModal();
-                }
-        
-                window.onclick = function(event) {
-                    const modal = document.getElementById('modal');
-                    if (event.target == modal) {
-                        closeModal();
-                    }
-                }
+  const encodedTitle = encodeURIComponent(itemTitle);
+  const encodedPoints = encodeURIComponent(points);
+
+  window.location.href = `PointsForm.html?item=${encodedTitle}&points=${encodedPoints}`;
+}
+
+
+    function purchaseWithCash() {
+      const itemName = document.getElementById('modal-title').textContent;
+      const itemPrice = document.getElementById('modal-price').textContent.split("دينار")[0].trim();
+      const encodedName = encodeURIComponent(itemName);
+      const encodedPrice = encodeURIComponent(itemPrice);
+      window.location.href = `CashForm.html?item=${encodedName}&price=${encodedPrice}`;
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('modal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    };
+    
             </script>
+            
         </body>
         
         </html>

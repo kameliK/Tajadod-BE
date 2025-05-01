@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>شراء كاش</title>
+  <style>
+    :root {
+      --primary-color: #2E7D32;
+      --primary-dark: #1B5E20;
+      --primary-light: #81C784;
+      --secondary-color: #00A5CF;
+      --accent-color: #FFC107;
+      --light-bg: #E8F5E9;
+      --dark-text: #263238;
+      --light-text: #FFFFFF;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      --gradient: linear-gradient(135deg, var(--primary-dark), var(--primary-color), var(--secondary-color));
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Tajawal', 'Arial', sans-serif;
+      background-color: var(--light-bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      color: var(--dark-text);
+      line-height: 1.6;
+    }
+
+    .form-container {
+      background-color: #ffffff;
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+      width: 100%;
+      max-width: 500px;
+      margin: 2rem;
+      transition: var(--transition);
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      transition: var(--transition);
+      background-color: rgba(0, 165, 207, 0.1);
+      width: auto;
+    }
+
+    .back-button:hover {
+      background-color: rgba(0, 165, 207, 0.2);
+      transform: translateX(-5px);
+      text-decoration: none;
+    }
+
+    .back-button::before {
+      content: "→";
+      display: inline-block;
+      margin-left: 8px;
+      transform: scaleX(-1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: var(--primary-dark);
+      font-size: 1.75rem;
+      font-weight: 700;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--dark-text);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.25rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: var(--transition);
+      background-color: #f9f9f9;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary-light);
+      background-color: #fff;
+      box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+    }
+
+    button {
+      width: 100%;
+      padding: 1rem;
+      background: var(--gradient);
+      color: var(--light-text);
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 0.5rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .item-details {
+      background-color: rgba(129, 199, 132, 0.15);
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+      border-radius: 8px;
+      text-align: right;
+      border-right: 4px solid var(--primary-color);
+    }
+
+    .item-details p {
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
+    }
+
+    .item-details span {
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+
+    @media (max-width: 576px) {
+      .form-container {
+        padding: 1.5rem;
+        margin: 1rem;
+      }
+      
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="form-container">
+    <a href="Store.html" class="back-button">الرجوع إلى المتجر</a>
+
+    <h2>إتمام عملية الشراء</h2>
+
+    <div class="item-details">
+      <p>المنتج: <span id="item-name">جاري التحميل...</span></p>
+      <p>السعر: <span id="item-price">جاري التحميل...</span></p>
+    </div>
+
+    <form action="submitCashForm.php" method="POST">
+      <input type="hidden" name="selectedItem" id="selectedItem" value="">
+
+      <label for="firstName">الاسم الأول:</label>
+      <input type="text" id="firstName" name="firstName" required>
+
+      <label for="lastName">اسم العائلة:</label>
+      <input type="text" id="lastName" name="lastName" required>
+
+      <label for="address">العنوان:</label>
+      <textarea id="address" name="address" rows="4" required></textarea>
+
+      <label for="contactNumber">رقم الهاتف:</label>
+      <input
+        type="tel"
+        id="contactNumber"
+        name="contactNumber"
+        required
+        pattern="^\+?\d{8,15}$"
+        title="الرجاء إدخال رقم هاتف صحيح يحتوي على أرقام فقط وقد يبدأ بـ +"
+      >
+
+      <button type="submit">تأكيد الشراء</button>
+    </form>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const item = params.get("item");
+    const price = params.get("price");
+
+    if (item && price) {
+      document.getElementById("item-name").textContent = item;
+      document.getElementById("item-price").textContent = price + " دينار";
+      document.getElementById("selectedItem").value = item;
+    } else {
+      document.getElementById("item-name").textContent = "غير متوفر";
+      document.getElementById("item-price").textContent = "غير متوفر";
+    }
+  </script>
+
+</body>
+</html>
