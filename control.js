@@ -517,7 +517,87 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     // Initialize the application
-    app.init();
+app.init();
+
+// Search functionality
+const searchInput = document.getElementById("search-input");
+const searchBtn = document.getElementById("search-btn");
+const finishSearchBtn = document.getElementById("finish-search-btn");
+
+if (searchInput && searchBtn && finishSearchBtn) {
+    searchBtn.addEventListener("click", function () {
+        const query = searchInput.value.trim();
+        if (!query) {
+            alert("الرجاء إدخال نص للبحث.");
+            return;
+        }
+
+        // Remove previous highlights
+        document.querySelectorAll(".highlight").forEach(el => {
+            el.outerHTML = el.innerHTML;
+        });
+
+        const contentElements = document.body.querySelectorAll("*:not(script):not(style)");
+        let found = false;
+
+        contentElements.forEach(element => {
+            if (found) return; // Stop once the first match is found
+            if (element.textContent.includes(query)) {
+                const regex = new RegExp(`(${query})`, "gi");
+                element.innerHTML = element.innerHTML.replace(regex, `<span class="highlight">$1</span>`);
+                const highlightedElement = element.querySelector(".highlight");
+                if (highlightedElement) {
+                    highlightedElement.scrollIntoView({ behavior: "smooth", block: "center" });
+                    highlightedElement.classList.add("flash");
+                    setTimeout(() => highlightedElement.classList.remove("flash"), 2000);
+
+                    // Check if the element is inside a dropdown
+                    const dropdown = element.closest(".dropdown-content");
+                    if (dropdown) {
+                        const dropdownParent = dropdown.previousElementSibling; // The dropdown button
+                        if (dropdownParent && dropdownParent.classList.contains("dropbtn")) {
+                            dropdownParent.click(); // Simulate a click to open the dropdown
+                            dropdownParent.innerHTML = dropdownParent.innerHTML.replace(
+                                regex,
+                                `<span class="highlight">$1</span>`
+                            ); // Highlight the dropdown button texts
+
+                            // Alert the user where the text was found
+                            alert(`تم العثور على النص "${query}" في القائمة المنسدلة: "${dropdownParent.textContent.trim()}"`);
+                        }
+                        dropdown.style.display = "block"; // Ensure the dropdown content is visible
+                    }
+                }
+                found = true;
+            }
+        });
+
+        if (found) {
+            searchBtn.style.display = "none";
+            finishSearchBtn.style.display = "inline-block";
+        } else {
+            alert(`النص "${query}" غير موجود في الصفحة.`);
+        }
+    });
+
+    finishSearchBtn.addEventListener("click", function () {
+        // Remove all highlights
+        document.querySelectorAll(".highlight").forEach(el => {
+            el.outerHTML = el.innerHTML;
+        });
+        searchInput.value = "";
+        finishSearchBtn.style.display = "none";
+        searchBtn.style.display = "inline-block";
+
+        // Hide any shown dropdowns
+        document.querySelectorAll(".dropdown-content.show").forEach(dropdown => {
+            dropdown.classList.remove("show");
+        });
+        document.querySelectorAll(".dropbtn.active").forEach(btn => {
+            btn.classList.remove("active");
+        });
+    });
+}
 });
 
 // "شركة" Button

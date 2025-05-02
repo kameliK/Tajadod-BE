@@ -163,6 +163,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const firstNameInput = document.getElementById("providerFirstName");
     const lastNameInput = document.getElementById("providerLastName");
+    const phoneInput = document.getElementById("providerPhone"); // <-- Add phone input
     const organizationNameInput = document.getElementById("providerOrganizationName");
     const pointsInput = document.getElementById("providerAdditionalInput");
     const companyBtn = document.querySelector(".company-btn");
@@ -182,9 +183,10 @@ document.addEventListener("DOMContentLoaded", function () {
     function fetchPoints() {
         const firstName = firstNameInput.value.trim();
         const lastName = lastNameInput ? lastNameInput.value.trim() : "";
+        const phone = phoneInput ? phoneInput.value.trim() : "";
         const organizationName = organizationNameInput ? organizationNameInput.value.trim() : "";
 
-        if (providerType === "Company" && firstName && organizationName) {
+        if (providerType === "Company" && firstName && organizationName && phone) {
             fetch("provider_backend.php", {
                 method: "POST",
                 headers: {
@@ -194,6 +196,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     action: "fetch_points",
                     first_name: firstName,
                     organization_name: organizationName,
+                    phone: phone,
                     provider_type: providerType,
                 }),
             })
@@ -209,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     console.error("Error fetching points:", error);
                     pointsInput.value = "رصيد النقاط: خطأ";
                 });
-        } else if (providerType === "Individual" && firstName && lastName) {
+        } else if (providerType === "Individual" && firstName && lastName && phone) {
             fetch("provider_backend.php", {
                 method: "POST",
                 headers: {
@@ -219,6 +222,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     action: "fetch_points",
                     first_name: firstName,
                     last_name: lastName,
+                    phone: phone,
                     provider_type: providerType,
                 }),
             })
@@ -241,8 +245,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     firstNameInput.addEventListener("input", fetchPoints);
     if (lastNameInput) lastNameInput.addEventListener("input", fetchPoints);
+    if (phoneInput) phoneInput.addEventListener("input", fetchPoints);
     if (organizationNameInput) organizationNameInput.addEventListener("input", fetchPoints);
 });
+
 </script>
 
 </body>

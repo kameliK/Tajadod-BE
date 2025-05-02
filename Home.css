@@ -900,3 +900,59 @@ a {
       height: 180px !important;
     }
   }
+
+/* Highlight and Flashing Effect */
+.highlight {
+    background-color:yellow;
+    font-weight: bold;
+    padding: 2px;
+    border-radius: 3px;
+}
+
+.flash {
+    animation: flash 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes flash {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.5;
+    }
+}
+#finish-search-btn {
+    display: inline-block; /* Changed from 'none' since you want it visible */
+    padding: 12px 24px;
+    background-color: #4CAF50; /* Green color - you can change this */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#finish-search-btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#finish-search-btn:active {
+    background-color: #3e8e41;
+    transform: translateY(0);
+    box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+}
+.dropdown-content {
+    display: none;
+  }
+  
+  .dropdown-content.show {
+    display: block;
+  }
+  
