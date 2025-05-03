@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحديث رقم الهاتف</title>
+    <style>
+        :root {
+            --primary-color: #2E7D32;
+            --primary-dark: #1B5E20;
+            --primary-light: #81C784;
+            --secondary-color: #00A5CF;
+            --accent-color: #FFC107;
+            --light-bg: #E8F5E9;
+            --dark-text: #263238;
+            --light-text: #FFFFFF;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --gradient: linear-gradient(135deg, var(--primary-dark), var(--primary-color), var(--secondary-color));
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+            color: var(--dark-text);
+            direction: rtl;
+            min-height: 100vh;
+        }
+
+        .page-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            width: 100%;
+            max-width: 400px;
+            margin: 60px auto 20px;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #489b4c, #28a745, #00A5CF);
+            padding: 12px 24px;
+            color: var(--light-text);
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            overflow: hidden;
+            z-index: 100;
+        }
+
+        .back-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 25%, rgba(255,255,255,0.2) 50%, transparent 75%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .back-button:hover {
+            background-color: #66BB6A;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .back-button:hover::after {
+            transform: translateX(100%);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 60px;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 3px;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--primary-dark);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: #f9f9f9;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(129, 199, 132, 0.2);
+            background-color: white;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            margin-top: 20px;
+            background: var(--gradient);
+            border: none;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button[type="submit"]:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .message {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .error {
+            background-color: #ffebee;
+            color: #d32f2f;
+        }
+
+        @media (max-width: 768px) {
+            .back-button {
+                position: fixed;
+                left: 15px;
+                top: 15px;
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .container {
+                margin-top: 80px;
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .back-button {
+                left: 10px;
+                top: 10px;
+            }
+            
+            .container {
+                margin: 70px auto 20px;
+                padding: 1.25rem;
+            }
+            
+            input[type="text"],
+            button[type="submit"] {
+                padding: 0.65rem 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back Button fixed at top left -->
+    <a href="Home.html" class="back-button">العودة إلى الصفحة الرئيسية</a>
+    
+    <div class="page-wrapper">
+        <div class="container">
+            <h2>تحديث رقم الهاتف</h2>
+            
+            <form action="update_phone.php" method="POST">
+                <div class="form-group">
+                    <label for="first_name">الاسم الأول</label>
+                    <input type="text" id="first_name" name="first_name" required placeholder="أدخل الاسم الأول">
+                </div>
+                
+                <div class="form-group">
+                    <label for="last_name">اسم العائلة</label>
+                    <input type="text" id="last_name" name="last_name" required placeholder="أدخل اسم العائلة">
+                </div>
+                
+                <div class="form-group">
+                    <label for="old_phone">رقم الهاتف القديم</label>
+                    <input type="text" id="old_phone" name="old_phone" required placeholder="أدخل الرقم القديم">
+                </div>
+                
+                <div class="form-group">
+                    <label for="new_phone">رقم الهاتف الجديد</label>
+                    <input type="text" id="new_phone" name="new_phone" required placeholder="أدخل الرقم الجديد">
+                </div>
+                
+                <button type="submit">تحديث</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
