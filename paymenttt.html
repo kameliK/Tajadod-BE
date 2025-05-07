@@ -1,179 +1,301 @@
-
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
     <title>طريقة الدفع</title>
     <style>
-      
-       
-        body {
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            direction: rtl; 
-            background-color: #4bae3000; 
-           
-        }
-        header {
-            background-color: #7ecd5326;
-            padding: 20px;
-            margin-bottom: 50px;
-            border-bottom: 3px solid #efce4a ;
-        }
-        .container {
-            margin-top:  100px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            background-color: white;
-            padding: 20px;
-            color: #006400;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(3, 109, 35, 0.478);
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary: #3f37c9;
+            --accent: #efce4a;
+            --accent-dark: #cea009;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --danger: #f72585;
+            --warning: #f8961e;
+            --green: #28a745;
+            --dark-green: #218838;
+            --border-radius: 12px;
+            --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
 
-        
-            h1 {
-            color: #006400; 
-            font-size: 2em;
+        body {
+            font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            direction: rtl;
+            background: linear-gradient(135deg, #f5f7ff, #e8f5e9);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            color: var(--dark);
+            line-height: 1.6;
         }
-           
-        
-       
+
+        header {
+            background: linear-gradient(135deg, var(--green), var(--dark-green));
+            color: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
         #product-details {
-            margin-bottom: 30px;
-            text-align: right;
-            color: #006400; 
+            margin-bottom: 2rem;
+            text-align: center;
+            padding: 1.5rem;
+            background-color: rgba(200, 230, 201, 0.3);
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--green);
+        }
+
+        #product-details h2 {
+            color: var(--green);
+            margin-bottom: 1rem;
         }
 
         #product-details p {
-            font-size: 18px;
-            color: #555;
+            font-size: 1.1em;
+            margin: 0.5rem 0;
+            color: var(--dark);
         }
 
-       
         #payment-options {
             display: flex;
-            justify-content: space-around;
-            margin-bottom: 30px;
-            color: #006400; 
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
 
-        /* الصندوق تبع اختيار طريقة الدفع */
         .payment-option {
-            border: 3px solid #00640086; 
-            padding: 20px;
-             margin-left: 30px;
-            margin-right: 30px;
-            color: #006400; 
-            display: inline-block;
+            border: 2px solid var(--green);
+            padding: 1.5rem;
             width: 45%;
+            min-width: 250px;
             text-align: center;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-            border-radius: 8px;
-            background-color: #c1efc11b; 
-        }
-        /*خيارات الدفع بس امرر عليه الماوس*/
-        .payment-option:hover {
-            background-color: #67c4697a;
-           
+            transition: var(--transition);
+            border-radius: var(--border-radius);
+            background-color: white;
+            box-shadow: var(--box-shadow);
         }
 
-      /*لما اختار طريقة الدفع فيزا مثلا البوكس اي رح يطلع */
+        .payment-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary);
+        }
+
+        .payment-option h3 {
+            color: var(--primary);
+            margin: 0;
+            font-size: 1.3em;
+        }
+
         .payment-fields {
             display: none;
             text-align: right;
-            margin-top: 20px;
-           
-            color: #006400; 
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: rgba(248, 249, 250, 0.7);
+            border-radius: var(--border-radius);
+            border-top: 3px solid var(--primary);
         }
 
         .payment-fields label {
-            font-size: 16px;
-            margin-bottom: 10px;
+            font-size: 1em;
+            margin-bottom: 0.5rem;
             display: block;
-            color: #006400; 
+            color: var(--dark);
+            font-weight: 500;
         }
 
         .payment-fields input[type="date"],
-        .payment-fields input[type="text"] {
-            padding: 10px;
-            margin: 10px 0;
-            font-size: 16px;
+        .payment-fields input[type="text"],
+        .payment-fields input[type="tel"] {
+            padding: 0.75rem 1rem;
+            margin: 0.5rem 0 1rem 0;
+            font-size: 1em;
             width: 100%;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+            border-radius: var(--border-radius);
+            border: 1px solid #ddd;
+            transition: var(--transition);
         }
 
-       /*كبسة اتمام الدفع*/
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #efce4a;
-            color: #006400; 
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-         
+        .payment-fields input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
         }
-/*لما امرر على الاتمم الدفع */
-        button:hover {
-            background-color: #efc128;
+
+        button[type="submit"],
+        .submit-btn {
+            padding: 0.75rem 1.5rem;
+            font-size: 1em;
+            background-color: var(--accent);
+            color: var(--dark);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        button[type="submit"]:hover,
+        .submit-btn:hover {
+            background-color: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(239, 206, 74, 0.3);
+        }
+
+        .back-btn {
+            padding: 0.75rem 1.5rem;
+            font-size: 1em;
+            background-color: var(--light);
+            color: var(--dark);
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .back-btn:hover {
+            background-color: #e9ecef;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            #payment-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .payment-option {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .payment-fields {
+                padding: 1rem;
+            }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header><h1>طريقة الدفع</h1></header>
+    <header>
+        <h1>طريقة الدفع</h1>
+    </header>
     <div class="container">
-       
-        <!-- بعرضلك المنتج الي انت حددته  -->
         <div id="product-details">
-            <h2>:المنتج المحدد</h2>
+            <h2>المنتج المحدد</h2>
             <p id="product-name"></p>
             <p id="product-price"></p>
             <p id="product-weight"></p>
         </div>
 
         <div id="payment-options">
-            <!-- مربع الدفع عند الاستلام -->
             <div class="payment-option" onclick="selectPaymentMethod('cash')">
                 <h3>الدفع عند الاستلام</h3>
             </div>
 
-            <!-- مربع الدفعغن طريق  الفيزا -->
             <div class="payment-option" onclick="selectPaymentMethod('visa')">
                 <h3>الدفع بواسطة فيزا</h3>
             </div>
         </div>
 
-        <!-- عرض حقول الدفع عند الاستلام -->
         <div id="cash-fields" class="payment-fields">
-            <h3>الدفع عند الاستلام</h3>
-            <label for="delivery-date-cash">موعد التسليم:</label>
-            <input type="date" id="delivery-date-cash">
+            <form id="cash-payment-form" action="process_payment.php" method="POST">
+                <input type="hidden" name="payment_method" value="cash">
+                <input type="hidden" name="product_name" id="hidden-product-name">
+                <input type="hidden" name="product_price" id="hidden-product-price">
+                <input type="hidden" name="product_weight" id="hidden-product-weight">
+                <label for="first-name-cash">الاسم الأول:</label>
+                <input type="text" id="first-name-cash" name="first_name" placeholder="ادخل الاسم الأول" required>
+                
+                <label for="last-name-cash">اسم العائلة:</label>
+                <input type="text" id="last-name-cash" name="last_name" placeholder="ادخل اسم العائلة" required>
+                
+                <label for="phone-number-cash">رقم الهاتف:</label>
+                <input type="tel" id="phone-number-cash" name="phone_number" placeholder="ادخل رقم الهاتف" required>
+                
+                <label for="delivery-date-cash">موعد التسليم:</label>
+                <input type="date" id="delivery-date-cash" name="delivery_date" required>
+                
+                <button type="submit">إتمام الدفع</button>
+            </form>
         </div>
 
-        <!-- عرض حقول الدفع عن طريق الفيزا -->
         <div id="visa-fields" class="payment-fields">
-            <h3>الدفع بواسطة فيزا</h3>
-            <label for="card-number">رقم البطاقة:</label>
-            <input type="text" id="card-number" placeholder="ادخل رقم البطاقة">
-            <br>
-            <label for="expiration-date">تاريخ الانتهاء:</label>
-            <input type="text" id="expiration-date" placeholder="MM/YY">
-            <br>
-            <label for="cvv">CVV:</label>
-            <input type="text" id="cvv" placeholder="ادخل CVV">
-            <br>
-            <label for="delivery-date-visa">موعد التسليم:</label>
-            <input type="date" id="delivery-date-visa">
+            <form id="visa-payment-form" action="process_payment.php" method="POST">
+                <input type="hidden" name="payment_method" value="visa">
+                <input type="hidden" name="product_name" id="hidden-product-name">
+                <input type="hidden" name="product_price" id="hidden-product-price">
+                <input type="hidden" name="product_weight" id="hidden-product-weight">
+                
+                <label for="first-name-visa">الاسم الأول:</label>
+                <input type="text" id="first-name-visa" name="first_name" placeholder="ادخل الاسم الأول" required>
+                
+                <label for="last-name-visa">اسم العائلة:</label>
+                <input type="text" id="last-name-visa" name="last_name" placeholder="ادخل اسم العائلة" required>
+                
+                <label for="phone-number-visa">رقم الهاتف:</label>
+                <input type="tel" id="phone-number-visa" name="phone_number" placeholder="ادخل رقم الهاتف" required>
+                
+                <label for="visa-type">نوع البطاقة:</label>
+                <input type="text" id="visa-type" readonly placeholder="سيتم تحديد نوع البطاقة تلقائيًا">
+                
+                <label for="card-number">ادخل رقم البطاقة:</label>
+                <input type="text" id="card-number" name="card_number" placeholder="ادخل رقم البطاقة" maxlength="19" required>
+                
+                <label for="expiration-date">تاريخ الانتهاء:</label>
+                <input type="text" id="expiration-date" name="expiration_date" placeholder="MM/YY" maxlength="5" required>
+                
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" placeholder="ادخل CVV" maxlength="3" required>
+                
+                <label for="delivery-date-visa">موعد التسليم:</label>
+                <input type="date" id="delivery-date-visa" name="delivery_date" required>
+                
+                <button type="submit" class="submit-btn">إتمام الدفع</button>
+            </form>
         </div>
 
-        <button onclick="submitPayment()">إتمام الدفع</button>
-        <button onclick="goBack()" style="margin-top: 10px; background-color: #ccc; color:#006c10;">العودة </button>
-
+        <button onclick="goBack()" class="back-btn">العودة</button>
     </div>
 
     <script>
@@ -181,10 +303,23 @@
         const urlParams = new URLSearchParams(window.location.search);
         const product = JSON.parse(decodeURIComponent(urlParams.get('product')));
 
+        // Debugging: Log the product object
+        console.log("Product received:", product);
+
         // عرض تفاصيل المنتج الذي تم اختياره
         document.getElementById('product-name').textContent = `اسم المنتج: ${product.name}`;
         document.getElementById('product-price').textContent = `السعر: ${product.price} دينار أردني`;
         document.getElementById('product-weight').textContent = `الوزن: ${product.weight} كيلوغرام`;
+
+        // Populate hidden fields with product details
+        document.getElementById('hidden-product-name').value = product.name;
+        document.getElementById('hidden-product-price').value = product.price;
+        document.getElementById('hidden-product-weight').value = product.weight;
+
+        // Debugging: Log the hidden input values
+        console.log("Hidden product_name:", document.getElementById('hidden-product-name').value);
+        console.log("Hidden product_price:", document.getElementById('hidden-product-price').value);
+        console.log("Hidden product_weight:", document.getElementById('hidden-product-weight').value);
 
         let selectedPaymentMethod = '';
 
@@ -207,19 +342,29 @@
         // إتمام عملية الدفع
         function submitPayment() {
             if (selectedPaymentMethod === 'cash') {
+                const firstName = document.getElementById('first-name-cash').value;
+                const lastName = document.getElementById('last-name-cash').value;
+                const phoneNumber = document.getElementById('phone-number-cash').value;
                 const deliveryDate = document.getElementById('delivery-date-cash').value;
-                if (deliveryDate) {
+
+                if (firstName && lastName && phoneNumber && deliveryDate) {
                     alert('تم تأكيد الدفع عند الاستلام. سيتم إرسال المنتج في التاريخ المحدد.');
+                    document.getElementById('cash-payment-form').submit();
                 } else {
-                    alert('يرجى تحديد موعد التسليم.');
+                    alert('يرجى تعبئة جميع الحقول المطلوبة للدفع عند الاستلام.');
                 }
             } else if (selectedPaymentMethod === 'visa') {
+                const firstName = document.getElementById('first-name-visa').value;
+                const lastName = document.getElementById('last-name-visa').value;
+                const phoneNumber = document.getElementById('phone-number-visa').value;
                 const cardNumber = document.getElementById('card-number').value;
                 const expirationDate = document.getElementById('expiration-date').value;
                 const cvv = document.getElementById('cvv').value;
                 const deliveryDate = document.getElementById('delivery-date-visa').value;
-                if (cardNumber && expirationDate && cvv && deliveryDate) {
+
+                if (firstName && lastName && phoneNumber && cardNumber && expirationDate && cvv && deliveryDate) {
                     alert('تم تأكيد الدفع بواسطة فيزا. سيتم معالجة الدفع.');
+                    document.getElementById('visa-payment-form').submit();
                 } else {
                     alert('يرجى تعبئة جميع الحقول المطلوبة لعملية الدفع بواسطة فيزا.');
                 }
@@ -227,12 +372,57 @@
                 alert('يرجى اختيار طريقة الدفع أولاً.');
             }
         }
+
+        const cardNumberInput = document.getElementById('card-number');
+        const visaTypeInput = document.getElementById('visa-type');
+
+        cardNumberInput.addEventListener('input', function () {
+            let value = cardNumberInput.value.replace(/\s+/g, ''); // Remove all spaces
+            if (value.length > 16) value = value.slice(0, 16); // Limit to 16 digits
+
+            // Add spaces every 4 digits
+            cardNumberInput.value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+
+            // Detect card type
+            if (/^4/.test(value)) {
+                visaTypeInput.value = 'Visa';
+            } else if (/^5[1-5]/.test(value)) {
+                visaTypeInput.value = 'MasterCard';
+            } else if (/^3[47]/.test(value)) {
+                visaTypeInput.value = 'American Express';
+            } else if (/^6(?:011|5)/.test(value)) {
+                visaTypeInput.value = 'Discover';
+            } else {
+                visaTypeInput.value = 'غير معروف';
+            }
+        });
+
+        const expirationDateInput = document.getElementById('expiration-date');
+        const cvvInput = document.getElementById('cvv');
+
+        // Format expiration date as MM/YY
+        expirationDateInput.addEventListener('input', function () {
+            let value = expirationDateInput.value.replace(/[^0-9]/g, ''); // Remove non-numeric characters
+            if (value.length > 4) value = value.slice(0, 4); // Limit to 4 digits
+
+            // Add slash after the first two digits
+            if (value.length > 2) {
+                value = value.slice(0, 2) + '/' + value.slice(2);
+            }
+
+            expirationDateInput.value = value;
+        });
+
+        // Ensure CVV is only 3 digits
+        cvvInput.addEventListener('input', function () {
+            let value = cvvInput.value.replace(/[^0-9]/g, ''); // Remove non-numeric characters
+            if (value.length > 3) value = value.slice(0, 3); // Limit to 3 digits
+            cvvInput.value = value;
+        });
+
         function goBack() {
-    window.location.href = 'buyy.html';
-}
-
-
-
+            window.location.href = 'buyy.html';
+        }
     </script>
 </body>
 </html>
