@@ -28,7 +28,7 @@ $payment_method = $_POST['payment_method'] ?? 'cash';
 $card_number     = $_POST['card_number'] ?? '';
 $expiration_date = $_POST['expiration_date'] ?? '';
 $cvv             = $_POST['cvv'] ?? '';
-
+var_dump($_POST); // Debugging: Print POST data
 // Debugging: Log received POST data
 error_log("Received POST data: " . print_r($_POST, true));
 

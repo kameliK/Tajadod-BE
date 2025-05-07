@@ -241,9 +241,9 @@
         <div id="cash-fields" class="payment-fields">
             <form id="cash-payment-form" action="process_payment.php" method="POST">
                 <input type="hidden" name="payment_method" value="cash">
-                <input type="hidden" name="product_name" id="hidden-product-name">
-                <input type="hidden" name="product_price" id="hidden-product-price">
-                <input type="hidden" name="product_weight" id="hidden-product-weight">
+                <input type="hidden" name="product_name" id="hidden-product-name-cash">
+                <input type="hidden" name="product_price" id="hidden-product-price-cash">
+                <input type="hidden" name="product_weight" id="hidden-product-weight-cash">
                 <label for="first-name-cash">الاسم الأول:</label>
                 <input type="text" id="first-name-cash" name="first_name" placeholder="ادخل الاسم الأول" required>
                 
@@ -263,9 +263,9 @@
         <div id="visa-fields" class="payment-fields">
             <form id="visa-payment-form" action="process_payment.php" method="POST">
                 <input type="hidden" name="payment_method" value="visa">
-                <input type="hidden" name="product_name" id="hidden-product-name">
-                <input type="hidden" name="product_price" id="hidden-product-price">
-                <input type="hidden" name="product_weight" id="hidden-product-weight">
+                <input type="hidden" name="product_name" id="hidden-product-name-visa">
+                <input type="hidden" name="product_price" id="hidden-product-price-visa">
+                <input type="hidden" name="product_weight" id="hidden-product-weight-visa">
                 
                 <label for="first-name-visa">الاسم الأول:</label>
                 <input type="text" id="first-name-visa" name="first_name" placeholder="ادخل الاسم الأول" required>
@@ -311,15 +311,14 @@
         document.getElementById('product-price').textContent = `السعر: ${product.price} دينار أردني`;
         document.getElementById('product-weight').textContent = `الوزن: ${product.weight} كيلوغرام`;
 
-        // Populate hidden fields with product details
-        document.getElementById('hidden-product-name').value = product.name;
-        document.getElementById('hidden-product-price').value = product.price;
-        document.getElementById('hidden-product-weight').value = product.weight;
+        // Populate hidden fields in both forms with product details
+        document.getElementById('hidden-product-name-cash').value = product.name;
+        document.getElementById('hidden-product-price-cash').value = product.price;
+        document.getElementById('hidden-product-weight-cash').value = product.weight;
 
-        // Debugging: Log the hidden input values
-        console.log("Hidden product_name:", document.getElementById('hidden-product-name').value);
-        console.log("Hidden product_price:", document.getElementById('hidden-product-price').value);
-        console.log("Hidden product_weight:", document.getElementById('hidden-product-weight').value);
+        document.getElementById('hidden-product-name-visa').value = product.name;
+        document.getElementById('hidden-product-price-visa').value = product.price;
+        document.getElementById('hidden-product-weight-visa').value = product.weight;
 
         let selectedPaymentMethod = '';
 
