@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>الشراء بالنقاط</title>
+  <title>استخدام النقاط</title>
   <style>
     :root {
       --primary-color: #2E7D32;
@@ -180,7 +180,7 @@
   <div class="form-container">
     <a href="Store.html" class="back-button">العودة إلى المتجر</a>
 
-    <h2>نموذج الشراء بالنقاط</h2>
+    <h2>استخدام النقاط</h2>
 
     <!-- Display item details -->
     <div class="item-details">
@@ -188,44 +188,63 @@
       <p id="item-points"></p>
     </div>
 
-    <form action="purchase_with_points.php" method="POST">
+    <form action="purchase_with_points.php" method="POST" onsubmit="return validateForm()">
       <label for="first_name">الاسم الأول:</label>
       <input type="text" id="first_name" name="first_name" required>
-
+    
       <label for="last_name">الاسم الأخير:</label>
       <input type="text" id="last_name" name="last_name" required>
-
-      <label for="contactNumber">رقم الهاتف:</label>
-      <input type="tel" id="contactNumber" name="contactNumber" required
-             pattern="^\+?\d{8,15}$"
-             title="الرجاء إدخال رقم هاتف صحيح يحتوي على أرقام فقط وقد يبدأ بـ +">
-
-      <input type="hidden" id="item" name="item">
-      <input type="hidden" id="points" name="points">
-
-      <input type="submit" value="تأكيد الشراء">
+    
+      <label for="phone">رقم الهاتف:</label>
+      <input type="tel" id="phone" name="phone" required>
+    
+      <label for="item">العنصر:</label>
+      <input type="text" id="item" name="item_name" readonly>
+    
+      <label for="points">النقاط المطلوبة:</label>
+      <input type="number" id="points" name="points" readonly required min="0">
+    
+      <input type="submit" value="إتمام العملية">
     </form>
+    
 
     <div id="error-message" class="error-message"></div>
   </div>
 
   <script>
-    // Get values from URL and set hidden fields
-    const urlParams = new URLSearchParams(window.location.search);
-    const item = urlParams.get('item');
-    const points = urlParams.get('points');
+    // قراءة البيانات من رابط الصفحة
+    const params = new URLSearchParams(window.location.search);
+    const item = params.get("item");
+    const points = params.get("points");
 
-    document.getElementById('item').value = item;
-    document.getElementById('points').value = points;
+    // Debugging: Log the parameters
+    console.log("Item:", item, "Points:", points);
 
-    // Display item details
-    document.getElementById('item-name').textContent = `اسم المنتج: ${decodeURIComponent(item)}`;
-    document.getElementById('item-points').textContent = `السعر بالنقاط: ${decodeURIComponent(points)} نقطة`;
+    // عرض البيانات في الحقول
+    if (item && points) {
+      document.getElementById("item").value = decodeURIComponent(item);
+      document.getElementById("points").value = decodeURIComponent(points);
+      document.getElementById('item-name').textContent = `اسم المنتج: ${decodeURIComponent(item)}`;
+      document.getElementById('item-points').textContent = `السعر بالنقاط: ${decodeURIComponent(points)} نقطة`;
+    } else {
+      document.getElementById("item").value = "";
+      document.getElementById("points").value = "";
+      document.getElementById("error-message").textContent = "يرجى التأكد من وجود البيانات في الرابط.";
+    }
 
-    // Handle form submission errors
-    const errorMessage = urlParams.get('error');
-    if (errorMessage) {
-      document.getElementById('error-message').textContent = decodeURIComponent(errorMessage);
+    // Validate form before submission
+    function validateForm() {
+      const itemField = document.getElementById("item").value;
+      const pointsField = document.getElementById("points").value;
+
+      // Debugging: Log the form values before submission
+      console.log("Form Submission - Item:", itemField, "Points:", pointsField);
+
+      if (!itemField || !pointsField) {
+        alert("يرجى التأكد من تعبئة جميع الحقول.");
+        return false;
+      }
+      return true;
     }
   </script>
 

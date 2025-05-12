@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تأكيد تغيير رقم الجوال | إعادة التدوير</title>
+    <title>شكرًا لشرائك | متجر المواد المعاد تدويرها</title>
     <style>
         :root {
             --primary-color: #2E7D32;
@@ -83,7 +83,7 @@
             padding: 0 2rem;
         }
 
-        .confirmation-card {
+        .thank-you-card {
             background-color: white;
             border-radius: 12px;
             padding: 3rem 2rem;
@@ -183,19 +183,25 @@
             margin-bottom: 1rem;
         }
 
-        .contact-info {
-            background-color: var(--light-bg);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 2rem 0;
-        }
-
         footer {
             background-color: var(--primary-color);
             color: var(--light-text);
             text-align: center;
             padding: 2rem;
             margin-top: 3rem;
+        }
+
+        .order-details {
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: right;
+        }
+
+        .order-details h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
         }
 
         @media (max-width: 768px) {
@@ -217,43 +223,63 @@
 <body>
     <nav>
         <div class="nav-container">
-            <a href="Home.html" class="logo">إعادة التدوير</a>
+            <a href="Home.html" class="logo">متجر المواد المعاد تدويرها</a>
             <div class="nav-links">
                 <a href="Home.html">الصفحة الرئيسية</a>
-                <a href="Store.html">المتجر </a>
+                <a href="Store.html">المتجر</a>
                 <a href="contactus.html">اتصل بنا</a>
             </div>
         </div>
     </nav>
 
     <main>
-        <div class="confirmation-card">
+        <div class="thank-you-card">
             <div class="icon">✓</div>
-            <h1>تم تغيير رقم جوالك بنجاح!</h1>
-            <p>شكرًا لك لتحديث معلومات الاتصال الخاصة بك. لقد تم تغيير رقم جوالك بنجاح في نظامنا.</p>
+            <h1>تم تأكيد طلبك بنجاح!</h1>
+            <p>شكرًا جزيلاً لدعمك لمنتجاتنا المعاد تدويرها. بشرائك هذه المنتجات، أنت تساهم مباشرة في الحفاظ على البيئة وتشجيع الاقتصاد الدائري.</p>
             
-            <div class="contact-info">
-                <p>في حال وجود أي مشكلة أو استفسار، يمكنك الاتصال بخدمة العملاء على الرقم <span class="highlight">0799999999</span> وسيقوم فريقنا بالرد عليك خلال <span class="highlight">24-48 ساعة</span>.</p>
-                <p>سيتم استخدام رقم الجوال الجديد لجميع عمليات التواصل المستقبلية.</p>
+            <div class="order-details">
+                <h3>تفاصيل الطلب</h3>
+                <p>تاريخ الطلب: <span class="highlight" id="order-date"></span></p>
+                <p>طريقة الدفع: <span class="highlight" id="payment-method"></span></p>
+                <p>اسم المنتج: <span class="highlight" id="item-name"></span></p>
+                <p id="remaining-points-container" style="display: none;">النقاط المتبقية: <span class="highlight" id="remaining-points"></span></p>
             </div>
             
-            <div class="steps">
+            <div class="steps" style="justify-content: center;">
                 <div class="step">
-                    <h3>معلومات الأمان</h3>
-                    <p>لضمان أمان حسابك، يرجى التأكد من تحديث رقم الجوال الخاص بك بشكل دوري لضمان استمرارية التواصل معك.</p>
-                </div>
-                <div class="step">
-                    <h3>التواصل المستقبلي</h3>
-                    <p>جميع رسائل التذكير والعروض الخاصة ستصلك على رقم الجوال الجديد</p>
+                    <h3>تتبع الطلب</h3>
+                    <p>سيتم إرسال رسالة تحتوي على رابط لتتبع حالة طلبك بمجرد شحن المنتجات</p>
                 </div>
             </div>
             
-            <a href="Home.html" class="btn">العودة إلى الصفحة الرئيسية</a>
+            <a href="Store.html" class="btn">استمر في التسوق</a>
+            <a href="Home.html" class="btn" style="background-color: var(--accent-color); margin-right: 1rem;">العودة إلى الصفحة الرئيسية</a>
         </div>
     </main>
 
     <footer>
-        <p>© 2025 مبادرة إعادة التدوير. جميع الحقوق محفوظة.</p>
+        <p>© 2025 متجر المواد المعاد تدويرها. جميع الحقوق محفوظة.</p>
     </footer>
+
+    <script>
+        // Get query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const paymentMethod = urlParams.get('payment_method') || 'غير محدد';
+        const orderDate = urlParams.get('order_date') || 'غير محدد';
+        const itemName = urlParams.get('item_name') || 'غير متوفر';
+        const remainingPoints = urlParams.get('remaining_points') || 'غير متوفرة';
+
+        // Update the HTML content
+        document.getElementById('payment-method').textContent = paymentMethod;
+        document.getElementById('order-date').textContent = orderDate;
+        document.getElementById('item-name').textContent = itemName;
+
+        // Show remaining points only if payment method is "الدفع بواسطة النقاط"
+        if (paymentMethod === "الدفع بواسطة النقاط") {
+            document.getElementById('remaining-points').textContent = remainingPoints;
+            document.getElementById('remaining-points-container').style.display = "block";
+        }
+    </script>
 </body>
 </html>

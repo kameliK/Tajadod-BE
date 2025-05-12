@@ -23,8 +23,12 @@ $sql = "INSERT INTO cash_orders (selected_item, first_name, last_name, address, 
         VALUES ('$selectedItem', '$firstName', '$lastName', '$address', '$contactNumber')";
 
 if ($conn->query($sql) === TRUE) {
-    // Display success message as JavaScript alert
-    echo "<script>alert('✅ تم إرسال طلبك بنجاح!'); window.location.href = 'Home.html';</script>";
+    // Redirect to thank_you_store.html with payment method, date, and item name
+    $paymentMethod = urlencode("الدفع عند الاستلام");
+    $orderDate = urlencode(date("d F Y")); // Current date in "day month year" format
+    $itemName = urlencode($selectedItem);
+    header("Location: thank_you_store.html?payment_method=$paymentMethod&order_date=$orderDate&item_name=$itemName");
+    exit;
 } else {
     echo "<script>alert('❌ حدث خطأ أثناء إرسال البيانات: " . $conn->error . "'); window.location.href = 'CashPurchaseForm.html';</script>";
 }

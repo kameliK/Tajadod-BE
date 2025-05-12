@@ -103,16 +103,21 @@
     }
 
     function purchaseWithPoints() {
-  const itemTitle = document.getElementById('modal-title').textContent;
-  const itemPriceText = document.getElementById('modal-price').textContent;
-  const points = parseInt(itemPriceText.split("نقطة")[0].split("أو")[1].trim());
+      const itemTitle = document.getElementById('modal-title').textContent.trim();
+      const itemPriceText = document.getElementById('modal-price').textContent.trim();
+      const points = parseInt(itemPriceText.split("نقطة")[0].split("أو")[1].trim());
 
-  const encodedTitle = encodeURIComponent(itemTitle);
-  const encodedPoints = encodeURIComponent(points);
+      // Debugging: Log the extracted points
+      console.log("Extracted points:", points);
 
-  window.location.href = `PointsForm.html?item=${encodedTitle}&points=${encodedPoints}`;
-}
+      // Ensure proper encoding of parameters
+      const encodedTitle = encodeURIComponent(itemTitle);
+      const encodedPoints = encodeURIComponent(points);
 
+      // Add a timestamp to prevent caching
+      const timestamp = new Date().getTime();
+      window.location.href = `PointsForm.html?item=${encodedTitle}&points=${encodedPoints}&t=${timestamp}`;
+    }
 
     function purchaseWithCash() {
       const itemName = document.getElementById('modal-title').textContent;
