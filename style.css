@@ -1,0 +1,202 @@
+/* Modern Eco-Friendly Chatbot Styling */
+:root {
+  --primary-green: #2E7D32;
+  --light-green: #81C784;
+  --accent-teal: #00A5CF;
+  --light-bg: #E8F5E9;
+  --dark-text: #263238;
+  --white: #FFFFFF;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* General Page Styling */
+body {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+
+  background-image: url('https://images.unsplash.com/photo-1605000797499-95a51c5269ae?q=80&w=2000');
+  background-size: cover;
+  background-position: center;
+
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(6px); /* Reduced blur */
+  -webkit-backdrop-filter: blur(6px);
+
+  background-blend-mode: overlay;
+  transition: background-color 0.5s ease-in-out;
+}
+
+/* Chat Container */
+#chat-container {
+  width: 400px;
+  background: rgba(255, 255, 255, 0.85); /* Slight transparency */
+  padding: 0;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(46, 125, 50, 0.1);
+  backdrop-filter: blur(8px); /* Glassmorphism effect */
+  animation: slideUpFade 0.6s ease;
+  transition: transform 0.3s ease;
+}
+
+#chat-container:hover {
+  transform: translateY(-4px);
+}
+
+#chat-container h2 {
+  background: linear-gradient(135deg, var(--primary-green), var(--accent-teal));
+  color: var(--white);
+  padding: 18px 20px;
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#chat-container h2::before {
+  content: "♻️";
+  font-size: 1.2rem;
+}
+
+/* Chat Box */
+#chat-box {
+  height: 350px;
+  overflow-y: auto;
+  border: none;
+  padding: 20px;
+  background: rgba(129, 199, 132, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Message Styles */
+.user-message {
+  background: var(--primary-green);
+  color: var(--white);
+  padding: 12px 16px;
+  border-radius: 18px 18px 4px 18px;
+  margin: 0;
+  text-align: right;
+  max-width: 80%;
+  align-self: flex-end;
+  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.2);
+  animation: fadeIn 0.3s ease;
+}
+
+.bot-message {
+  background: var(--white);
+  color: var(--dark-text);
+  padding: 12px 16px;
+  border-radius: 18px 18px 18px 4px;
+  margin: 0;
+  text-align: left;
+  max-width: 80%;
+  align-self: flex-start;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(46, 125, 50, 0.1);
+  animation: fadeIn 0.3s ease;
+  position: relative;
+}
+
+.bot-message::before {
+  content: "♻️";
+  position: absolute;
+  left: -28px;
+  top: 0;
+}
+
+/* Input Container */
+.input-container {
+  display: flex;
+  margin: 15px;
+  align-items: center;
+}
+
+/* Chat Input */
+#user-input {
+  flex: 1;
+  padding: 14px 18px;
+  border: 1px solid rgba(46, 125, 50, 0.3);
+  border-radius: 24px;
+  outline: none;
+  font-size: 15px;
+  transition: var(--transition);
+  background: rgba(129, 199, 132, 0.1);
+  font-family: 'Poppins', sans-serif;
+}
+
+#user-input:focus {
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
+}
+
+/* Send Button */
+button {
+  padding: 0;
+  margin-left: 10px;
+  background: var(--primary-green);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button:hover {
+  background: var(--accent-teal);
+  transform: scale(1.05);
+}
+
+button::after {
+  content: "→";
+  font-size: 18px;
+}
+
+/* Smooth Scroll */
+#chat-box::-webkit-scrollbar {
+  width: 6px;
+}
+
+#chat-box::-webkit-scrollbar-thumb {
+  background: rgba(46, 125, 50, 0.3);
+  border-radius: 3px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typing {
+  0% { opacity: 0.4; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-3px); }
+  100% { opacity: 0.4; transform: translateY(0); }
+}
