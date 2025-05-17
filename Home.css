@@ -981,3 +981,28 @@ a {
   transform: translateY(0) scale(1);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
+.chatbot-button.mobile-chatbot-inline {
+  display: none;
+}
+
+.chatbot-button.desktop-chatbot-btn {
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .chatbot-button.desktop-chatbot-btn {
+    display: none !important;
+  }
+  .chatbot-button.mobile-chatbot-inline {
+    display: inline-block !important;
+    margin-right: 8px;
+    margin-left: 0;
+    padding: 8px 14px;
+    font-size: 13px;
+    height: 38px;
+    align-self: center;
+  }
+  .menu-toggle {
+    margin-right: 0;
+  }
+}

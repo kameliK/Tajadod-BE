@@ -7,6 +7,12 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+
+	<div class="Home-button" style="position: absolute; top: 1 ; left: 1;">
+		<a href="Home.html">العودة إلى الصفحة الرئيسية
+       </a>
+	</div>
+	
     <div id="chat-container">
     	            <h2>مساعد إعادة التدوير الذكي</h2>
     	<div id="chat-box"></div>
