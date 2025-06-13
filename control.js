@@ -1,4 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
+    // Enable lazy loading for all images
+    document.querySelectorAll('img').forEach(img => {
+        img.setAttribute('loading', 'lazy');
+    });
+
     // Main application object to organize functionality
     const app = {
         // Initialize all components
@@ -655,11 +660,11 @@ document.addEventListener("DOMContentLoaded", function() {
                         <option value="+965" data-flag="kw">+965 (Kuwait)</option>
                         <option value="+973" data-flag="bh">+973 (Bahrain)</option>
                     </select>
-                    <div class="custom-dropdown">
+                   <div class="custom-dropdown">
                         <div class="dropdown-btn" id="dropdownBtn">
                             JO +962 (Jordan)
                         </div>
-                        <div class="dropdown-content" id="dropdownContent"></div>
+                       <div class="dropdown-content" id="dropdownContent" ></div>
                     </div>
                 
                     <div class="form-floating flex-grow-1">

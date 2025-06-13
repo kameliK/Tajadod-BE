@@ -109,7 +109,7 @@ html {
   background-color: var(--primary-color);
   color: var(--light-text);
   text-decoration: none;
-  border-radius: 50px;
+  border-radius: 10px;
   font-size: 1rem;
   font-weight: 500;
   border: none;
